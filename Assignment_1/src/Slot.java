@@ -13,7 +13,5 @@ public class Slot {
         this.Quantity = Quantity;
         this.vacc = vacc;
         this.slotNumber = slotNumber;
-        //TODO: selecting the vaccine
-
     }
 }

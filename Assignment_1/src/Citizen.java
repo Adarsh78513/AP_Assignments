@@ -27,34 +27,42 @@ public class Citizen {
 
     public void VaccinationCondition(){
         if ( this.dosesGiven == 0){
+            System.out.println("Citizen REGISTERED");
             System.out.println("NOT VACCINATED");
         }
         else if ( this.dosesGiven < v.numOfDoses){
             System.out.println("PARTIALLY VACCINATED");
             System.out.println("Vaccine Given: " + v.vaccineName);
-            System.out.println("Number fo doses given" + this.dosesGiven);
-            System.out.println("Next Dose due date: " + this.lastDoseDate + v.gapBetweenDoses);
+            System.out.println("Number fo doses given: " + this.dosesGiven);
+            System.out.println("Next Dose due date: " + this.lastDoseDate + v.gapBetweenDoses + 1);
         }
         else {
             System.out.println("FULLY VACCINATED");
             System.out.println("Vaccine Given: " + v.vaccineName);
-            System.out.println("Number fo doses given" + this.dosesGiven);
+            System.out.println("Number fo doses given " + this.dosesGiven);
         }
     }
 
-    public void vaccinateCitizen(Vaccine v, int day){
+    public void vaccinateCitizen(Slot s, Hospital h1){
         if(this.dosesGiven == 0){
-            this.v = v;
+            s.Quantity -= 1;
+            this.v = s.vacc;
             this.dosesGiven += 1;
-            System.out.println(this.citizenName + " vaccinated with " + v.vaccineName);
+            System.out.println(this.citizenName + " vaccinated with " + s.vacc.vaccineName);
+
         }
-        else if ( this.dosesGiven < v.numOfDoses ){
+        else if ( this.dosesGiven < s.vacc.numOfDoses ){
+            s.Quantity -= 1;
             this.dosesGiven += 1;
-            this.lastDoseDate += day;
-            System.out.println(this.citizenName + " vaccinated with " + v.vaccineName);
+            this.lastDoseDate += s.dayNumber;
+            System.out.println(this.citizenName + " vaccinated with " + s.vacc.vaccineName);
         }
         else {
             System.out.println("You are fully vaccinated.");
+        }
+
+        if ( s.Quantity == 0){
+            s.vacc.removeHospital(h1);
         }
     }
 }

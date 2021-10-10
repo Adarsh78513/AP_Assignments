@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Hospital {
     static int hospitalNumber = 100000;
@@ -7,7 +8,6 @@ public class Hospital {
     ArrayList<Slot> allSLots;
     String hospitalName;
     static ArrayList<Hospital> allHospital = new ArrayList();
-    Slot slots;
 
     Hospital(String hospitalName, int PinCode){
         this.hospitalName = hospitalName;
@@ -18,10 +18,11 @@ public class Hospital {
 
     }
 
-    public void addSlot(int dayNumber, int quantity, int vaccineNumber){
+    public void addSlot(int dayNumber, int quantity, int vaccineNumber, Hospital ho){
         Vaccine vacc = Vaccine.findVaccine(vaccineNumber);
         Slot s = new Slot(dayNumber, quantity, vacc, allSLots.size());
         allSLots.add(s);
+        vacc.addHospital(ho);
     }
 
     public static Hospital findHospital(int hospitalNumber){
@@ -41,6 +42,40 @@ public class Hospital {
         }
 
         return null;
+    }
+
+    public void printAllSlots(){
+	    for (Slot s: this.allSLots){
+            System.out.println( s.slotNumber + "-> Day: " +
+                    s.dayNumber + " Vaccine: " +
+                    s.vacc.vaccineName + " Qty: " + s.Quantity);
+	    }
+    }
+
+    public static void printAllHospital(){
+        for ( Hospital h: allHospital){
+            System.out.println(h.uniqueIDHospital + " " + h.hospitalName);
+        }
+    }
+
+    public void printAllSlotsWithVaccines(Vaccine vac){
+        for (Slot s: this.allSLots){
+            if (Objects.equals(s.vacc.vaccineName, vac.vaccineName)){
+                System.out.println( s.slotNumber + "-> Day: " +
+                        s.dayNumber + " Vaccine: " +
+                        s.vacc.vaccineName + " Qty: " + s.Quantity);
+            }
+        }
+    }
+
+
+    public boolean vaccineAvailable(Vaccine v){
+        for ( Slot s: this.allSLots){
+            if (Objects.equals(s.vacc.vaccineName, v.vaccineName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Slot findSlot(int slotNumber){
