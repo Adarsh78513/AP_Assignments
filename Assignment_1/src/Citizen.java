@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Citizen {
     String citizenName;
@@ -34,7 +35,8 @@ public class Citizen {
             System.out.println("PARTIALLY VACCINATED");
             System.out.println("Vaccine Given: " + v.vaccineName);
             System.out.println("Number fo doses given: " + this.dosesGiven);
-            System.out.println("Next Dose due date: " + this.lastDoseDate + v.gapBetweenDoses + 1);
+            int temp = this.lastDoseDate + v.gapBetweenDoses + 1;
+            System.out.println("Next Dose due date: " + temp);
         }
         else {
             System.out.println("FULLY VACCINATED");
@@ -43,7 +45,11 @@ public class Citizen {
         }
     }
 
-    public void vaccinateCitizen(Slot s, Hospital h1){
+    public void vaccinateCitizen(Slot s, Hospital hospt){
+        if ( this.dosesGiven != 0 && !Objects.equals(s.vacc.vaccineName, this.v.vaccineName)){
+            System.out.println("You have chosen the wrong slot, Please choose accordingly");
+            return;
+        }
         if(this.dosesGiven == 0){
             s.Quantity -= 1;
             this.v = s.vacc;
@@ -62,7 +68,7 @@ public class Citizen {
         }
 
         if ( s.Quantity == 0){
-            s.vacc.removeHospital(h1);
+            s.vacc.removeHospital(hospt);
         }
     }
 }

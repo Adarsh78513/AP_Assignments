@@ -13,6 +13,7 @@ public class Main {
         boolean portalRunning = true;
         while ( portalRunning ){
             System.out.println("""
+                    --------------------------------
                     1. Add Vaccine
                     2. Register Hospital
                     3. Register Citizen
@@ -20,12 +21,13 @@ public class Main {
                     5. Book Slot for Vaccination
                     6. List all slots for a hospital
                     7. Check Vaccination Status
-                    8. Exit""");
-            System.out.println("--------------------------------");
+                    8. Exit
+                    --------------------------------""");
 
             menu = Reader.nextint();
             switch (menu) {
                 case 1 -> {
+                    //Taking the inputs
                     System.out.print("Vaccine Name: ");
                     String vaccineName = Reader.next();
                     System.out.print("Number of doses: ");
@@ -47,12 +49,12 @@ public class Main {
                     String hospitalName = Reader.next();
                     System.out.print("PinCode: ");
                     int pinCode = Reader.nextint();
-                    Hospital h = new Hospital(hospitalName, pinCode);
-                    Hospital.allHospital.add(h);
+                    Hospital hospt = new Hospital(hospitalName, pinCode);
+                    Hospital.allHospital.add(hospt);
 
                     //Make and print unique ID
-                    System.out.println("Hospital Name: " + h.hospitalName + ", PinCode: " + h.PinCode +
-                            " Unique ID: " + h.uniqueIDHospital);
+                    System.out.println("Hospital Name: " + hospt.hospitalName + ", PinCode: " + hospt.PinCode +
+                            " Unique ID: " + hospt.uniqueIDHospital);
                 }
                 case 3 -> {
                     System.out.print("Citizen Name: ");
@@ -76,7 +78,7 @@ public class Main {
                 case 4 -> {
                     System.out.print("Enter Hospital ID: ");
                     int hospitalID = Reader.nextint();
-                    Hospital ho = Hospital.findHospital(hospitalID);
+                    Hospital hospt = Hospital.findHospital(hospitalID);
                     System.out.print("Enter number of Slots to be added: ");
                     int numberOfSlot = Reader.nextint();
                     for (int i = 0; i < numberOfSlot; i++) {
@@ -87,19 +89,19 @@ public class Main {
                         System.out.println("Select Vaccine ");
 
                         //print all the vaccines we have available
-                        for (Vaccine va : Vaccine.allVaccines) {
-                            System.out.println(va.vaccineNumber + ". " + va.vaccineName);
+                        for (Vaccine v : Vaccine.allVaccines) {
+                            System.out.println(v.vaccineNumber + ". " + v.vaccineName);
                         }
                         int vaccineNumber = Reader.nextint();
 
                         //call the function to add the slot
-                        ho.addSlot(dayNumber, quantity, vaccineNumber, ho);
-                        Vaccine vac = Vaccine.findVaccine(vaccineNumber);
+                        hospt.addSlot(dayNumber, quantity, vaccineNumber, hospt);
+                        Vaccine v = Vaccine.findVaccine(vaccineNumber);
                         //TODO: clarify what quantity has to be printed
-                        System.out.println("Slot added by Hospital " + ho.uniqueIDHospital +
+                        System.out.println("Slot added by Hospital " + hospt.uniqueIDHospital +
                                 " for Day: " + dayNumber +
                                 ", Available Quantity: " + quantity +
-                                " of Vaccine " + vac.vaccineName);
+                                " of Vaccine " + v.vaccineName);
 
                     }
                 }
@@ -124,9 +126,9 @@ public class Main {
                         int hosID = Reader.nextint();
 
                         //print the available slots
-                        Hospital h1 = Hospital.findHospital(hosID);
+                        Hospital hospt = Hospital.findHospital(hosID);
 
-                        h1.printAllSlots();
+                        hospt.printAllSlots();
 //                        for ( Slot s: h1.allSLots) {
 //                            System.out.println( s.slotNumber + "-> Day: " +
 //                                    s.dayNumber + " Vaccine: " +
@@ -136,10 +138,10 @@ public class Main {
 
                         System.out.print("Choose Slot: ");
                         int slotNumber = Reader.nextint();
-                        Slot s = h1.findSlot(slotNumber);
+                        Slot s = hospt.findSlot(slotNumber);
 
 //                        Citizen c = Citizen.findCitizen(patientID);
-                        c.vaccinateCitizen(s, h1);
+                        c.vaccinateCitizen(s, hospt);
 
                     }
                     else if (option == 2) {
@@ -178,10 +180,10 @@ public class Main {
                 case 6 -> {
                     System.out.print("Enter Hospital Id: ");
                     int hospID = Reader.nextint();
-                    Hospital h2 = Hospital.findHospital(hospID);
+                    Hospital hospt = Hospital.findHospital(hospID);
 
                     //print the available slots
-                    for (Slot s : h2.allSLots) {
+                    for (Slot s : hospt.allSLots) {
                         System.out.println("Day: " + s.dayNumber + " Vaccine: " +
                                 s.vacc.vaccineName + " Qty: " + s.Quantity);
                     }
