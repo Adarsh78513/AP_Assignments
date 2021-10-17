@@ -6,11 +6,8 @@ public class Backpack {
     static ArrayList<Course> allCourses = new ArrayList<>();
 
     public static User enterBackpack(int option) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                1. Enter as instructor
-                2. Enter as student
-                3. Exit""");
+        //TODO: take the input for option here
+
         switch (option) {
             case 1 -> {
                 System.out.println("Instructors:");
@@ -20,23 +17,20 @@ public class Backpack {
                 System.out.println("Student");
                 Student.printAll();
             }
-            case 3 -> {
-                System.out.println("Exit");
-                return null;
-            }
             default ->{
                 System.out.println("Not a valid option");
             }
         }
 
         System.out.print("Choose id: ");
-        int id = Integer.parseInt(scanner.next());
+        int id = Integer.parseInt(Main.scanner.next());
         User person;
         if ( option == 1){
             person = Instructor.search(id);
         }else {
             person = Student.search(id);
         }
+        person.login();
         return person;
 	}
 }

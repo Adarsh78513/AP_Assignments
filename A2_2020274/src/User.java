@@ -7,4 +7,5 @@ public interface User {
     public void viewComments();
     public void addComments();
     public void logout();
+    public void login();
 }

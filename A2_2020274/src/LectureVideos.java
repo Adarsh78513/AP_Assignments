@@ -1,6 +1,13 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 public class LectureVideos implements LectureMaterial{
+    static ArrayList<LectureMaterial> allVideos = new ArrayList<>();
     String topic;
     String fileName;
+    Instructor uploadedBy;
+    java.util.Date date;
+
 
     LectureVideos() {
 	    this.topic = "Not yet specified";
@@ -32,9 +39,39 @@ public class LectureVideos implements LectureMaterial{
 
     @Override
     public void add(String topic) {
+        LectureMaterial video = new LectureVideos();
         addTopic(topic);
+        allVideos.add(video);
+
         System.out.print("Enter filename of the video: ");
         String fileName =  Main.scanner.next();
         setFileName(fileName);
     }
+
+    public String getTopic(){
+        return this.topic;
+    }
+
+    public String getFileName(){
+        return this.fileName;
+    }
+
+    
+    @Override
+    public Date getDateOfUpload(){
+        return this.date;
+    }
+
+    private String getInstructor() {
+        return this.uploadedBy.name;
+    }
+
+    @Override
+    public String toString() {
+        return "Title of video: " + getTopic() + "/n" + 
+                "Video file: " + getFileName() + "/n" + 
+                "Date of Upload: " + getDateOfUpload() + 
+                "Uploaded by: " + getInstructor();
+    }
+
 }

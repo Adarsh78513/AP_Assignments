@@ -4,10 +4,12 @@ public class Instructor implements User {
     static ArrayList<Instructor> allInstructors = new ArrayList<>();
     String name;
     int id;
+    boolean using;
 
     Instructor(String name, int id){
         this.name = name;
         this.id = id;
+        this.using = false;
     }
 
     public static Instructor search(int id){
@@ -21,9 +23,11 @@ public class Instructor implements User {
     }
 
     @Override
-    public void perform(int option){
-        switch (option) {
+    public void perform(int action){
+        switch  (action) {
             case 1 -> {
+                addClassMaterial();
+
                 System.out.println("""
                         1. Add Lecture Slide +
                         2. Add Lecture Video""");
@@ -46,10 +50,11 @@ public class Instructor implements User {
                     System.out.println("Enter filename of video: ");
                     String video = Main.scanner.next();
                 } else {
-                    System.out.println("Please enter valid option.");
+                    System.out.println("Please enter valid action.");
                 }
             }
             case 2 -> {
+                addAssessments();
                 System.out.println("""
                         1. Add Assignment +
                         2. Add Quiz""");
@@ -59,7 +64,7 @@ public class Instructor implements User {
                     String problemStatement = Main.scanner.next();
                     System.out.println("Enter max marks: ");
                     int maxMarks = Integer.parseInt(Main.scanner.next());
-                    Assignments ass = new Assignments(problemStatement, maxMarks);
+                    Assignments ass = new Assignments();
                 }
                 else if ( i == 2){
                     System.out.println("Enter quiz question: ");
@@ -68,21 +73,27 @@ public class Instructor implements User {
                 }
             }
             case 3 -> {
-                System.out.println("lecture materials");
+                viewLectureMaterial();
             }
             case 4 -> {
+                viewAssessment();
                 System.out.println("assessments");
             }
             case 5 -> {
+                gradeAssessments();
                 System.out.println("Grade assessments");
             }
             case 6 -> {
+                closeAssessment();
                 System.out.println("Close assessment");
             }
             case 7 -> {
+                viewComments();
                 System.out.println("View comments");
+                //TODO: make the comment section
             }
             case 8 -> {
+                addComments();
                 System.out.print("Enter comment: ");
                 String comment = Main.scanner.next();
                 //TODO: make the comment section
@@ -92,18 +103,33 @@ public class Instructor implements User {
                 //TODO: make logout
                 System.out.println("logout");
             }
-            default -> System.out.println("Choose a valid option");
+            default -> System.out.println("Choose a valid action");
         }
     }
 
     @Override
     public void viewLectureMaterial() {
-        
+        for ( LectureMaterial lectureMaterial: LectureSlides.allSlides){
+            System.out.println(lectureMaterial);
+            System.out.println();
+        }
+        for ( LectureMaterial lectureMaterial: LectureVideos.allVideos){
+            System.out.println(lectureMaterial);
+            System.out.println();
+        }
     }
 
     @Override
     public void viewAssessment() {
+        for ( Assessments quiz: Quiz.allQuizzes){
+            System.out.println(quiz);
+            System.out.println();
+        }
 
+        for ( Assessments ass : Assignments.allAssignments){
+            System.out.println(ass);
+            System.out.println();
+        }
     }
 
     @Override
@@ -118,7 +144,12 @@ public class Instructor implements User {
 
     @Override
     public void logout() {
+        this.using = false;
+    }
 
+    @Override
+    public void login(){
+        this.using = true;
     }
 
     @Override
@@ -146,6 +177,7 @@ public class Instructor implements User {
             System.out.println(k);
         }
     }
+
     @Override
     public String toString(){
 	    return this.id + " - " + this.name;
