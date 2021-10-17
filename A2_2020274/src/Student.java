@@ -79,12 +79,14 @@ public class Student implements User {
 
     @Override
     public void viewComments() {
-
+        DiscussionForum.viewComments();
     }
 
     @Override
     public void addComments() {
-
+        System.out.print("Enter message to be added: ");
+        String message = Main.scanner.next();
+        DiscussionForum.addComments(this, message);
     }
 
     @Override

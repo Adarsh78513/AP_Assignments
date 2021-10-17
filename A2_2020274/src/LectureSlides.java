@@ -9,26 +9,30 @@ public class LectureSlides implements LectureMaterial{
     ArrayList<String> content;
     java.util.Date date;
 
-
+    //TODO: clear these functions
     LectureSlides(String topic, int numberOfSlides){
 	    this.topic = topic;
         this.numberOfSlides = numberOfSlides;
         this.content = new ArrayList<>();
+        this.date = new java.util.Date();
     }
     LectureSlides(String topic){
         this.topic = topic;
         this.numberOfSlides = -1;
         this.content = new ArrayList<>();
+        this.date = new java.util.Date();
     }
     LectureSlides(int numberOfSlides){
         this.topic = "Not yet specified";
         this.numberOfSlides = numberOfSlides;
         this.content = new ArrayList<>();
+        this.date = new java.util.Date();
     }
     LectureSlides(){
         this.topic = "Not yet specified";
         this.numberOfSlides = -1;
         this.content = new ArrayList<>();
+        this.date = new java.util.Date();
     }
 
     public void addSlide(String s){
