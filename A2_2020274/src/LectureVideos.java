@@ -14,22 +14,15 @@ public class LectureVideos implements LectureMaterial{
         this.fileName = "Not available";
     }
 
-    public void fileName(String fileName){
-        if ( fileName.endsWith(".mp4")){
-            this.fileName = fileName;
-        }
-        else{
-            System.out.println("The video format is not acceptable.");
-        }
-    }
 
     public void addTopic(String topic){
         this.topic = topic;
     }
 
-    public void setFileName(String fileName){
+    public void setFileName(LectureMaterial video, String fileName){
         if ( fileName.endsWith(".mp4")){
             this.fileName = fileName;
+            allVideos.add(video);
         }
         else{
             System.out.println(fileName + " is not a valid file name.");
@@ -38,14 +31,13 @@ public class LectureVideos implements LectureMaterial{
     }
 
     @Override
-    public void add(String topic) {
-        LectureMaterial video = new LectureVideos();
+    public void add(LectureMaterial video, String topic) {
         addTopic(topic);
         allVideos.add(video);
 
         System.out.print("Enter filename of the video: ");
         String fileName =  Main.scanner.next();
-        setFileName(fileName);
+        setFileName(video, fileName);
     }
 
     public String getTopic(){

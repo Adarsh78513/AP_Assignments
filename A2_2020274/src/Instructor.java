@@ -25,56 +25,9 @@ public class Instructor implements User {
     @Override
     public void perform(int action){
         switch  (action) {
-            case 1 -> {
-                addClassMaterial();
-
-                System.out.println("""
-                        1. Add Lecture Slide +
-                        2. Add Lecture Video""");
-                int i = Integer.parseInt(Main.scanner.next());
-                if (i == 1) {
-                    System.out.print("Enter topic of slides: ");
-                    String topic = Main.scanner.next();
-                    System.out.print("Enter number of slides: ");
-                    int numberOfSlides = Integer.parseInt(Main.scanner.next());
-                    System.out.println("Enter content of slides");
-                    
-                    LectureMaterial slides = new LectureSlides(topic, numberOfSlides);
-
-                    //It will add the topic and each of the slides
-                    slides.add(topic);
-                    
-                } else if (i == 2) {
-                    System.out.print("Enter topic of video: ");
-                    String topic = Main.scanner.next();
-                    System.out.println("Enter filename of video: ");
-                    String video = Main.scanner.next();
-                } else {
-                    System.out.println("Please enter valid action.");
-                }
-            }
-            case 2 -> {
-                addAssessments();
-                System.out.println("""
-                        1. Add Assignment +
-                        2. Add Quiz""");
-                int i = Integer.parseInt(Main.scanner.next());
-                if ( i == 1){
-                    System.out.print("Enter problem statement: ");
-                    String problemStatement = Main.scanner.next();
-                    System.out.println("Enter max marks: ");
-                    int maxMarks = Integer.parseInt(Main.scanner.next());
-                    Assignments ass = new Assignments();
-                }
-                else if ( i == 2){
-                    System.out.println("Enter quiz question: ");
-                    String question = Main.scanner.next();
-                    Quiz quiz = new Quiz(question);
-                }
-            }
-            case 3 -> {
-                viewLectureMaterial();
-            }
+            case 1 -> addClassMaterial();
+            case 2 -> addAssessments();
+            case 3 -> viewLectureMaterial();
             case 4 -> {
                 viewAssessment();
                 System.out.println("assessments");
@@ -99,13 +52,69 @@ public class Instructor implements User {
                 //TODO: make the comment section
                 //TODO: Add this comment
             }
-            case 9 -> {
-                //TODO: make logout
-                System.out.println("logout");
-            }
+            case 9 -> //TODO: make logout
+                    System.out.println("logout");
             default -> System.out.println("Choose a valid action");
         }
     }
+
+    public void addClassMaterial(){
+        System.out.println("""
+                        1. Add Lecture Slide
+                        2. Add Lecture Video""");
+        int i = Integer.parseInt(Main.scanner.next());
+        if (i == 1) {
+            System.out.print("Enter topic of slides: ");
+            String topic = Main.scanner.next();
+            System.out.print("Enter number of slides: ");
+            int numberOfSlides = Integer.parseInt(Main.scanner.next());
+            System.out.println("Enter content of slides");
+
+            LectureMaterial slides = new LectureSlides(topic, numberOfSlides);
+
+            //It will add the topic and each of the slides
+            slides.add(slides, topic);
+
+        } else if (i == 2) {
+            LectureMaterial temp = new LectureVideos();
+            System.out.print("Enter topic of video: ");
+            String topic = Main.scanner.next();
+            //TODO: clear this
+            temp.add(temp , topic);
+
+        } else {
+            System.out.println("Please enter valid action.");
+        }
+    }
+
+    public void addAssessments(){
+        System.out.println("""
+                        1. Add Assignment +
+                        2. Add Quiz""");
+        int i = Integer.parseInt(Main.scanner.next());
+        if ( i == 1){
+            System.out.print("Enter problem statement: ");
+            String problemStatement = Main.scanner.next();
+            System.out.println("Enter max marks: ");
+            int maxMarks = Integer.parseInt(Main.scanner.next());
+            Assignments ass = new Assignments();
+        }
+        else if ( i == 2){
+            System.out.println("Enter quiz question: ");
+            String question = Main.scanner.next();
+            Quiz quiz = new Quiz(question);
+        }
+    }
+
+    public void gradeAssessments(){
+
+    }
+
+    public void closeAssessment(){
+        
+    }
+
+
 
     @Override
     public void viewLectureMaterial() {

@@ -3,15 +3,18 @@ import java.util.ArrayList;
 public class Assignments implements Assessments{
     String problemStatement;
     int maxMarks;
-    static ArrayList<Assessments> allAssignments = 
-    new ArrayList<Assessments>();
+    int marksGot;
+    static ArrayList<Assessments> allAssignments = new ArrayList<>();
     boolean pending;
+    boolean open;
     
  
     Assignments(){
     	this.problemStatement = "Not yet set";
         this.maxMarks = -1;
+        this.marksGot = 0;
         this.pending = true;
+        this.open = true;
     }
 
 
@@ -43,5 +46,16 @@ public class Assignments implements Assessments{
     @Override
     public void complete(){
         this.pending = false;
+    }
+
+    @Override
+    public int marksGot() {
+        if ( !open && pending ){
+            System.out.println("You missed the deadline");
+        }
+        else if ( pending){
+            System.out.println("Assignment not taken yet");
+        }
+        return this.marksGot;
     }
 }

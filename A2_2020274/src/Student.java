@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 public class Student implements User {
     static ArrayList<Student> allStudents = new ArrayList<>();
+    ArrayList<Assessments> quizzesTaken = new ArrayList<>();
+    ArrayList<Assessments> assignmentsTaken = new ArrayList<>();
+
     String name;
     int id;
     boolean using;
@@ -26,30 +29,20 @@ public class Student implements User {
     public void perform(int action){
         
         switch (action) {
-            case 1 -> {
-                viewLectureMaterial();
-            }
-            case 2 -> {
-                viewAssessment();
-            }
-            case 3-> {
-                submitAssessment();
-            }
-            case 4 -> {
-                viewGrades();
-            }
-            case 5 -> {
-                viewComments();
-            }
-            case 6 -> {
-                addComments();
-            }
-            case 7 -> {
-                logout();
-            }
+            case 1 -> viewLectureMaterial();
+            case 2 -> viewAssessment();
+            case 3-> submitAssessment();
+            case 4 -> viewGrades();
+            case 5 -> viewComments();
+            case 6 -> addComments();
+            case 7 -> logout();
         }
 
 
+    }
+
+    private void viewGrades() {
+        //TODO: complete
     }
 
     @Override
@@ -81,7 +74,7 @@ public class Student implements User {
     public void submitAssessment() {
         System.out.println("Pending assessments");
         //TODO: complete this method
-        
+
     }
 
     @Override

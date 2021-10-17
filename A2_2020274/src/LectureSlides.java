@@ -13,18 +13,22 @@ public class LectureSlides implements LectureMaterial{
     LectureSlides(String topic, int numberOfSlides){
 	    this.topic = topic;
         this.numberOfSlides = numberOfSlides;
+        this.content = new ArrayList<>();
     }
     LectureSlides(String topic){
         this.topic = topic;
         this.numberOfSlides = -1;
+        this.content = new ArrayList<>();
     }
     LectureSlides(int numberOfSlides){
         this.topic = "Not yet specified";
         this.numberOfSlides = numberOfSlides;
+        this.content = new ArrayList<>();
     }
     LectureSlides(){
         this.topic = "Not yet specified";
         this.numberOfSlides = -1;
+        this.content = new ArrayList<>();
     }
 
     public void addSlide(String s){
@@ -36,8 +40,7 @@ public class LectureSlides implements LectureMaterial{
 	}
     
     @Override
-    public void add(String topic) {
-        LectureMaterial slides = new LectureSlides();
+    public void add(LectureMaterial slides, String topic) {
         addTopic(topic);
         allSlides.add(slides);
         if ( this.numberOfSlides != -1){
