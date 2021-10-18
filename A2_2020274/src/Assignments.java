@@ -35,23 +35,23 @@ public class Assignments implements Assessments{
 	@Override
 	public void add() {
 		System.out.print("Enter problem statement: ");
-        String problemStatement = Main.scanner.next();
+        String problemStatement = Main.scanner.nextLine();
         addProblem(problemStatement);
         System.out.print("Enter max marks: ");
-        int maxMarks = Integer.parseInt(Main.scanner.next());
+        int maxMarks = Integer.parseInt(Main.scanner.nextLine());
         assignMaxMarks(maxMarks);
 	}
 
     @Override
     public String toString() {
-        return "ID: Assignment: " + this.problemStatement + 
+        return "ID:" + ID() + " Assignment: " + this.problemStatement +
         " Max Marks: " + this.maxMarks;
     }
 
     @Override
     public void complete(Assessments a){
         System.out.print("Enter filename of the Assignment: ");
-        this.fileName = Main.scanner.next();
+        this.fileName = Main.scanner.nextLine();
         this.pending = false;
     }
 
@@ -96,10 +96,20 @@ public class Assignments implements Assessments{
         this.marksGot = marks;
     }
 
+    @Override
+    public String question() {
+        System.out.println("No such thing in assignments");
+        return null;
+    }
+
     public static void printAll() {
         for ( Assessments assignment: allAssignments){
             System.out.println(assignment);
         }
+    }
+
+    public int ID(){
+        return this.ID;
     }
 
 }

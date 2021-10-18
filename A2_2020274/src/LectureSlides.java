@@ -8,13 +8,15 @@ public class LectureSlides implements LectureMaterial{
     int numberOfSlides;
     ArrayList<String> content;
     java.util.Date date;
+    User uploadedBy;
 
     //TODO: clear these functions
-    LectureSlides(String topic, int numberOfSlides){
+    LectureSlides(String topic, int numberOfSlides, User uploasedBy){
 	    this.topic = topic;
         this.numberOfSlides = numberOfSlides;
         this.content = new ArrayList<>();
         this.date = new java.util.Date();
+        this.uploadedBy = uploasedBy;
     }
     LectureSlides(String topic){
         this.topic = topic;
@@ -50,7 +52,7 @@ public class LectureSlides implements LectureMaterial{
         if ( this.numberOfSlides != -1){
             for ( int i = 1; i <= this.numberOfSlides; ++i ){
                 System.out.print("Content of slide " + i + ": ");
-                String temp = Main.scanner.next();
+                String temp = Main.scanner.nextLine();
                 addSlide(temp);
             }
         }
@@ -64,17 +66,21 @@ public class LectureSlides implements LectureMaterial{
         return this.date;
     }
 
+    private String getInstructor() {
+        return this.uploadedBy.getName();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Title: " + this.topic + "\n");
+        sb.append("Title: ").append(this.topic).append("\n");
         for ( int i = 1 ; i <= this.numberOfSlides; i ++ ){
-            sb.append("SLide " + i + ": " +  this.content.get(i - 1) + "\n");
+            sb.append("SLide ").append(i).append(": ").append(this.content.get(i - 1)).append("\n");
         }
-        sb.append("Number of Slides " + this.numberOfSlides + "\n");
-        sb.append("Date of Upload" + getDateOfUpload() + "\n");
+        sb.append("Number of Slides ").append(this.numberOfSlides).append("\n");
+        sb.append("Date of Upload").append(getDateOfUpload()).append("\n");
+        sb.append("Uploaded by ").append(getInstructor());
 
-        String str = sb.toString();
-        return str;
+        return sb.toString();
     }
 }

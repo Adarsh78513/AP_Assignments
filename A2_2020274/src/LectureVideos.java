@@ -5,13 +5,15 @@ public class LectureVideos implements LectureMaterial{
     static ArrayList<LectureMaterial> allVideos = new ArrayList<>();
     String topic;
     String fileName;
-    Instructor uploadedBy;
     java.util.Date date;
+    User uploadedBy;
 
 
-    LectureVideos() {
+    LectureVideos(User uploadedBy) {
 	    this.topic = "Not yet specified";
         this.fileName = "Not available";
+        this.date = new java.util.Date();
+        this.uploadedBy = uploadedBy;
     }
 
 
@@ -36,7 +38,7 @@ public class LectureVideos implements LectureMaterial{
         allVideos.add(video);
 
         System.out.print("Enter filename of the video: ");
-        String fileName =  Main.scanner.next();
+        String fileName =  Main.scanner.nextLine();
         setFileName(video, fileName);
     }
 
@@ -55,14 +57,14 @@ public class LectureVideos implements LectureMaterial{
     }
 
     private String getInstructor() {
-        return this.uploadedBy.name;
+        return this.uploadedBy.getName();
     }
 
     @Override
     public String toString() {
-        return "Title of video: " + getTopic() + "/n" + 
-                "Video file: " + getFileName() + "/n" + 
-                "Date of Upload: " + getDateOfUpload() + 
+        return "Title of video: " + getTopic() + "\n" +
+                "Video file: " + getFileName() + "\n" +
+                "Date of Upload: " + getDateOfUpload() + "\n" +
                 "Uploaded by: " + getInstructor();
     }
 

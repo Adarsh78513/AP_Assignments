@@ -1,4 +1,4 @@
-public interface User {
+interface User {
     public String getName();
     public void menuForUser();
     public void perform(int option);
@@ -8,6 +8,7 @@ public interface User {
     public void addComments();
     public void logout();
     public void login();
+    public boolean Using();
 
-    boolean Using();
+    public abstract void addQuiz(QuizResult q);
 }

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Student implements User {
     static ArrayList<Student> allStudents = new ArrayList<>();
-    ArrayList<Assessments> quizzesTaken = new ArrayList<>();
-    ArrayList<Assessments> assignmentsTaken = new ArrayList<>();
+    ArrayList<Result> quizzesTaken = new ArrayList<>();
+    ArrayList<Result> assignmentsTaken = new ArrayList<>();
 
     String name;
     int id;
@@ -31,11 +31,12 @@ public class Student implements User {
         switch (action) {
             case 1 -> viewLectureMaterial();
             case 2 -> viewAssessment();
-            case 3-> submitAssessment();
+            case 3 -> submitAssessment();
             case 4 -> viewGrades();
             case 5 -> viewComments();
             case 6 -> addComments();
             case 7 -> logout();
+            default -> System.out.println("Enter a valid number");
         }
 
 
@@ -43,6 +44,8 @@ public class Student implements User {
 
     private void viewGrades() {
         //TODO: complete
+        System.out.println("Graded Submission");
+        System.out.println("Ungraded Submission");
     }
 
     @Override
@@ -72,25 +75,69 @@ public class Student implements User {
     }
 
     public void submitAssessment() {
-        pendingAssessment();
+        //Printing all the pending assessment
+        boolean pending = pendingAssessment();
+        if ( !pending ){
+            return;
+        }
         System.out.print("Enter ID of assignment: ");
-        int ID = Integer.parseInt(Main.scanner.next());
-        Assessments a = Assessments.searchAssessment(ID);
-        a.complete(a);
+        int ID = Integer.parseInt(Main.scanner.nextLine());
+        Result r = searchAssessment(ID);
+//        Assessments a = Assessments.searchAssessment(ID);
+        r.complete();
     }
 
-    public void pendingAssessment() {
-        System.out.println("Pending assessments");
-        for ( Assessments quiz: Quiz.allQuizzes){
+//    public void pendingAssessment() {
+//        System.out.println("Pending assessments");
+//        for ( Assessments quiz: Quiz.allQuizzes){
+//            if (quiz.Pending()){
+//                System.out.println(quiz);
+//            }
+//        }
+//        for ( Assessments assignment: Assignments.allAssignments){
+//            if(assignment.Pending()){
+//                System.out.println(assignment);
+//            }
+//        }
+//    }
+
+    public Result searchAssessment(int ID){
+        for ( Result quiz: this.quizzesTaken){
+            if ( quiz.ID() == ID){
+                return quiz;
+            }
+        }
+        for ( Result ass : this.assignmentsTaken){
+            if ( ass.ID() == ID){
+                return ass;
+            }
+        }
+        System.out.println("No such file found");
+        return null;
+    }
+
+    public boolean pendingAssessment() {
+        System.out.print("Pending assessments");
+        int count = 0;
+        for ( Result quiz: this.quizzesTaken){
             if (quiz.Pending()){
                 System.out.println(quiz);
+                count += 1;
             }
         }
-        for ( Assessments assignment: Assignments.allAssignments){
+
+        for ( Result assignment: this.assignmentsTaken){
             if(assignment.Pending()){
                 System.out.println(assignment);
+                count += 1;
             }
         }
+        if ( count == 0){
+            System.out.println(" are zero");
+            return false;
+        }
+        System.out.println(" are " + count);
+        return true;
     }
 
     @Override
@@ -101,7 +148,7 @@ public class Student implements User {
     @Override
     public void addComments() {
         System.out.print("Enter message to be added: ");
-        String message = Main.scanner.next();
+        String message = Main.scanner.nextLine();
         DiscussionForum.addComments(this, message);
     }
 
@@ -137,6 +184,14 @@ public class Student implements User {
         for ( Student k: allStudents){
             System.out.println(k);
         }
+    }
+
+    public void addQuiz(QuizResult q){
+        this.quizzesTaken.add(q);
+    }
+
+    public void addAssignment(AssignmentResult a){
+        this.assignmentsTaken.add(a);
     }
 
     @Override

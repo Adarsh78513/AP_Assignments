@@ -59,23 +59,23 @@ public class Instructor implements User {
         System.out.println("""
                         1. Add Lecture Slide
                         2. Add Lecture Video""");
-        int i = Integer.parseInt(Main.scanner.next());
+        int i = Integer.parseInt(Main.scanner.nextLine());
         if (i == 1) {
             System.out.print("Enter topic of slides: ");
-            String topic = Main.scanner.next();
+            String topic = Main.scanner.nextLine();
             System.out.print("Enter number of slides: ");
-            int numberOfSlides = Integer.parseInt(Main.scanner.next());
+            int numberOfSlides = Integer.parseInt(Main.scanner.nextLine());
             System.out.println("Enter content of slides");
 
-            LectureMaterial slides = new LectureSlides(topic, numberOfSlides);
+            LectureMaterial slides = new LectureSlides(topic, numberOfSlides, this);
 
             //It will add the topic and each of the slides
             slides.add(slides, topic);
 
         } else if (i == 2) {
-            LectureMaterial temp = new LectureVideos();
+            LectureMaterial temp = new LectureVideos(this);
             System.out.print("Enter topic of video: ");
-            String topic = Main.scanner.next();
+            String topic = Main.scanner.nextLine();
             //TODO: clear this
             temp.add(temp , topic);
 
@@ -88,17 +88,17 @@ public class Instructor implements User {
         System.out.println("""
                         1. Add Assignment
                         2. Add Quiz""");
-        int i = Integer.parseInt(Main.scanner.next());
+        int i = Integer.parseInt(Main.scanner.nextLine());
         if ( i == 1){
             System.out.print("Enter problem statement: ");
-            String problemStatement = Main.scanner.next();
+            String problemStatement = Main.scanner.nextLine();
             System.out.println("Enter max marks: ");
-            int maxMarks = Integer.parseInt(Main.scanner.next());
+            int maxMarks = Integer.parseInt(Main.scanner.nextLine());
             Assignments ass = new Assignments();
         }
         else if ( i == 2){
             System.out.println("Enter quiz question: ");
-            String question = Main.scanner.next();
+            String question = Main.scanner.nextLine();
             Quiz quiz = new Quiz(question);
         }
     }
@@ -111,7 +111,7 @@ public class Instructor implements User {
         System.out.println("----------");
 
         System.out.println("Enter ID of assessment to view submissions: ");
-        int assessmentID = Integer.parseInt(Main.scanner.next());
+        int assessmentID = Integer.parseInt(Main.scanner.nextLine());
         Assessments a = Assessments.searchAssessment(assessmentID);
         //TODO: set marks for each student
 
@@ -124,6 +124,7 @@ public class Instructor implements User {
 
 
 
+    //TODO: The video are printing twice
     @Override
     public void viewLectureMaterial() {
         for ( LectureMaterial lectureMaterial: LectureSlides.allSlides){
@@ -157,7 +158,7 @@ public class Instructor implements User {
     @Override
     public void addComments() {
         System.out.print("Enter message to be added: ");
-        String message = Main.scanner.next();
+        String message = Main.scanner.nextLine();
         DiscussionForum.addComments(this, message);
     }
 
@@ -194,6 +195,11 @@ public class Instructor implements User {
     @Override
     public boolean Using() {
         return this.using;
+    }
+
+    @Override
+    public void addQuiz(QuizResult q) {
+        System.out.println("Not available");
     }
 
     public static void printAll(){

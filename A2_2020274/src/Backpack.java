@@ -6,7 +6,7 @@ public class Backpack {
     static ArrayList<Course> allCourses = new ArrayList<>();
 
     public static User enterBackpack(int option) {
-        //TODO: take the input for option here
+        //TODO: take the input for option here (Not imp)
 
         switch (option) {
             case 1 -> {
@@ -23,7 +23,7 @@ public class Backpack {
         }
 
         System.out.print("Choose id: ");
-        int id = Integer.parseInt(Main.scanner.next());
+        int id = Integer.parseInt(Main.scanner.nextLine());
         User person;
         if ( option == 1){
             person = Instructor.search(id);

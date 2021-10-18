@@ -11,7 +11,7 @@ public class Quiz implements Assessments{
     private final int ID;
     
 
-    Quiz(String question){
+    public Quiz(String question){
         this.question = "Not given yet";
         this.maxMarks = 1;
         this.marksGot = 0;
@@ -20,6 +20,10 @@ public class Quiz implements Assessments{
         this.ID = Course.totalQuizzes + Course.totalAssignments;
         Course.totalQuizzes += 1;
         this.answer = "Not given";
+        for ( User stud : Student.allStudents){
+            QuizResult q = new QuizResult(this);
+            stud.addQuiz(q);
+        }
     }
 
     public void setQuestion(String question){
@@ -29,19 +33,19 @@ public class Quiz implements Assessments{
     @Override
     public void add() {
         System.out.print("Enter quiz question: ");
-        String question = Main.scanner.next();
+        String question = Main.scanner.nextLine();
         setQuestion(question);
     }
 
     @Override
     public String toString() {
-        return "ID: 1 Question: " + this.question;
+        return "ID: "+ ID() + "  Question: " + this.question;
     }
 
     @Override
     public void complete(Assessments a){
         System.out.print(this.question);
-        this.answer = Main.scanner.next();
+        this.answer = Main.scanner.nextLine();
         this.pending = false;
     }
 
@@ -90,5 +94,14 @@ public class Quiz implements Assessments{
         for ( Assessments quiz: allQuizzes){
             System.out.println(quiz);
         }
+    }
+
+    public String question(){
+        return this.question;
+    }
+
+    @Override
+    public int ID() {
+        return this.ID;
     }
 }

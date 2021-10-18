@@ -23,7 +23,7 @@ public class Main {
                 2. Enter as student
                 3. Exit""");
 
-            int userType = Integer.parseInt(scanner.next());
+            int userType = Integer.parseInt(scanner.nextLine());
             if ( userType == 3 ) {
                 System.out.println("Exiting Backpack");
                 using = false;
@@ -44,8 +44,8 @@ public class Main {
             
             while (using){
                 personUsing.menuForUser();
-                int action = Integer.parseInt(scanner.next());
-                //TODO: complete perform
+                int action = Integer.parseInt(scanner.nextLine());
+                //TODO: solve errors (try-catch)
                 personUsing.perform(action);
 
                 using = personUsing.Using();

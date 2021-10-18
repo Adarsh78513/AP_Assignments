@@ -17,4 +17,6 @@ public interface Assessments {
     public void close();
     public void gradeAssessments(int marks);
 
+    public String question();
+    public int ID();
 }
