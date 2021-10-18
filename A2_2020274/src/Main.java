@@ -35,9 +35,12 @@ public class Main {
             else{
                 using = false;
             }
-
-            //This returns the user that is currently using the backpack
-            User personUsing = Backpack.enterBackpack(userType);
+            
+            User personUsing = null;
+            if ( using){
+                //This returns the user that is currently using the backpack
+                personUsing = Backpack.enterBackpack(userType);
+            }
             
             while (using){
                 personUsing.menuForUser();
@@ -45,6 +48,7 @@ public class Main {
                 //TODO: complete perform
                 personUsing.perform(action);
 
+                using = personUsing.Using();
             }
         }
 

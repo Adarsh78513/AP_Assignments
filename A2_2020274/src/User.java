@@ -8,4 +8,6 @@ public interface User {
     public void addComments();
     public void logout();
     public void login();
+
+    boolean Using();
 }

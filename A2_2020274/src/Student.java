@@ -123,6 +123,11 @@ public class Student implements User {
         }
     }
 
+    @Override
+    public boolean Using(){
+        return this.using;
+    }
+
 
     @Override
     public String toString(){

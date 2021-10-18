@@ -13,6 +13,7 @@ public class Instructor implements User {
     }
 
     public static Instructor search(int id){
+        //TODO: handle when the user is not there
         for ( Instructor k: allInstructors){
             if ( k.id == id){
                 return k;
@@ -47,13 +48,11 @@ public class Instructor implements User {
             }
             case 8 -> {
                 addComments();
-                System.out.print("Enter comment: ");
-                String comment = Main.scanner.next();
-                //TODO: make the comment section
-                //TODO: Add this comment
             }
-            case 9 -> //TODO: make logout
-                    System.out.println("logout");
+            case 9 -> {
+                System.out.println("Logging out...");
+                logout();
+            }
             default -> System.out.println("Choose a valid action");
         }
     }
@@ -89,7 +88,7 @@ public class Instructor implements User {
 
     public void addAssessments(){
         System.out.println("""
-                        1. Add Assignment +
+                        1. Add Assignment
                         2. Add Quiz""");
         int i = Integer.parseInt(Main.scanner.next());
         if ( i == 1){
@@ -181,6 +180,11 @@ public class Instructor implements User {
                 7. View comments
                 8. Add comments
                 9. Logout""");
+    }
+
+    @Override
+    public boolean Using() {
+        return this.using;
     }
 
     public static void printAll(){
