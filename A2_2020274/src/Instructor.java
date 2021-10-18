@@ -31,20 +31,18 @@ public class Instructor implements User {
             case 3 -> viewLectureMaterial();
             case 4 -> {
                 viewAssessment();
-                System.out.println("assessments");
             }
             case 5 -> {
+                //TODO: complete
                 gradeAssessments();
-                System.out.println("Grade assessments");
             }
             case 6 -> {
-                closeAssessment();
-                System.out.println("Close assessment");
+                //TODO: Chose the assessment to close
+                Assessments a = Assessments.searchAssessment(1);
+                closeAssessment(a);
             }
             case 7 -> {
                 viewComments();
-                System.out.println("View comments");
-                //TODO: make the comment section
             }
             case 8 -> {
                 addComments();
@@ -106,11 +104,22 @@ public class Instructor implements User {
     }
 
     public void gradeAssessments(){
+        System.out.println("List of assessments");
+        Assignments.printAll();
+        System.out.println("----------");
+        Quiz.printAll();
+        System.out.println("----------");
 
+        System.out.println("Enter ID of assessment to view submissions: ");
+        int assessmentID = Integer.parseInt(Main.scanner.next());
+        Assessments a = Assessments.searchAssessment(assessmentID);
+        //TODO: set marks for each student
+
+//        a.gradeAssessments(marks);
     }
 
-    public void closeAssessment(){
-        
+    public void closeAssessment(Assessments a){
+        a.close();
     }
 
 

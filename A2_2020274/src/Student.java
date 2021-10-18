@@ -72,9 +72,25 @@ public class Student implements User {
     }
 
     public void submitAssessment() {
-        System.out.println("Pending assessments");
-        //TODO: complete this method
+        pendingAssessment();
+        System.out.print("Enter ID of assignment: ");
+        int ID = Integer.parseInt(Main.scanner.next());
+        Assessments a = Assessments.searchAssessment(ID);
+        a.complete(a);
+    }
 
+    public void pendingAssessment() {
+        System.out.println("Pending assessments");
+        for ( Assessments quiz: Quiz.allQuizzes){
+            if (quiz.Pending()){
+                System.out.println(quiz);
+            }
+        }
+        for ( Assessments assignment: Assignments.allAssignments){
+            if(assignment.Pending()){
+                System.out.println(assignment);
+            }
+        }
     }
 
     @Override

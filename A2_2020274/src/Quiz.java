@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Quiz implements Assessments{
+    String answer;
     String question;
     int maxMarks;
     int marksGot;
     static ArrayList<Assessments> allQuizzes = new ArrayList<>();
     boolean pending;
     boolean open;
+    private final int ID;
     
 
     Quiz(String question){
@@ -15,6 +17,9 @@ public class Quiz implements Assessments{
         this.marksGot = 0;
         this.pending = true;
         this.open = true;
+        this.ID = Course.totalQuizzes + Course.totalAssignments;
+        Course.totalQuizzes += 1;
+        this.answer = "Not given";
     }
 
     public void setQuestion(String question){
@@ -34,7 +39,9 @@ public class Quiz implements Assessments{
     }
 
     @Override
-    public void complete(){
+    public void complete(Assessments a){
+        System.out.print(this.question);
+        this.answer = Main.scanner.next();
         this.pending = false;
     }
 
@@ -47,5 +54,41 @@ public class Quiz implements Assessments{
             System.out.println("Quiz not taken yet");
         }
         return this.marksGot;
+    }
+
+    @Override
+    public boolean Pending() {
+        return this.pending;
+    }
+
+    public static Assessments search(int ID) {
+        for ( Assessments quiz: allQuizzes){
+            if (quiz.assessmentID() == ID){
+                return quiz;
+            }
+        }
+        System.out.println("Quiz not found.");
+        return null;
+    }
+
+    @Override
+    public int assessmentID() {
+        return this.ID;
+    }
+
+    @Override
+    public void close() {
+        this.open = false;
+    }
+
+    @Override
+    public void gradeAssessments(int marks) {
+        this.marksGot = marks;
+    }
+
+    public static void printAll() {
+        for ( Assessments quiz: allQuizzes){
+            System.out.println(quiz);
+        }
     }
 }

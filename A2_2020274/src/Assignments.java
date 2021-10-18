@@ -1,20 +1,25 @@
 import java.util.ArrayList;
 
 public class Assignments implements Assessments{
+    String fileName;
     String problemStatement;
     int maxMarks;
     int marksGot;
     static ArrayList<Assessments> allAssignments = new ArrayList<>();
     boolean pending;
     boolean open;
+    private final int ID;
     
  
     Assignments(){
+        this.fileName = "Not given";
     	this.problemStatement = "Not yet set";
         this.maxMarks = -1;
         this.marksGot = 0;
         this.pending = true;
         this.open = true;
+        this.ID = Course.totalQuizzes + Course.totalAssignments;
+        Course.totalAssignments += 1;
     }
 
 
@@ -44,7 +49,9 @@ public class Assignments implements Assessments{
     }
 
     @Override
-    public void complete(){
+    public void complete(Assessments a){
+        System.out.print("Enter filename of the Assignment: ");
+        this.fileName = Main.scanner.next();
         this.pending = false;
     }
 
@@ -58,4 +65,41 @@ public class Assignments implements Assessments{
         }
         return this.marksGot;
     }
+
+    @Override
+    public boolean Pending() {
+        return this.pending;
+    }
+
+    public static Assessments search(int ID) {
+        for ( Assessments assignment: allAssignments){
+            if (assignment.assessmentID() == ID){
+                return assignment;
+            }
+        }
+        System.out.println("Quiz not found.");
+        return null;
+    }
+
+    @Override
+    public int assessmentID() {
+        return this.ID;
+    }
+
+    @Override
+    public void close() {
+        this.open = false;
+    }
+
+    @Override
+    public void gradeAssessments(int marks) {
+        this.marksGot = marks;
+    }
+
+    public static void printAll() {
+        for ( Assessments assignment: allAssignments){
+            System.out.println(assignment);
+        }
+    }
+
 }
