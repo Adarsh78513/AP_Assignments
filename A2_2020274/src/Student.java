@@ -43,9 +43,39 @@ public class Student implements User {
     }
 
     private void viewGrades() {
-        //TODO: complete
+        //TODO: print in correct format(not most imp)
         System.out.println("Graded Submission");
+        gradedSubmission();
         System.out.println("Ungraded Submission");
+        ungradedSubmission();
+    }
+
+    private void ungradedSubmission(){
+
+        for ( Result quiz: this.quizzesTaken){
+            if (!quiz.Pending() && !quiz.graded()){
+                System.out.println(quiz);
+            }
+        }
+        for ( Result ass : this.assignmentsTaken){
+            if (!ass.Pending() && !ass.graded()){
+                System.out.println(ass);
+            }
+        }
+        System.out.println("----------");
+    }
+
+    private void gradedSubmission(){
+        for ( Result quiz: this.quizzesTaken){
+            if (quiz.graded()){
+                System.out.println(quiz);
+            }
+        }
+        for ( Result ass : this.assignmentsTaken){
+            if ( ass.graded()){
+                System.out.println(ass);
+            }
+        }
     }
 
     @Override
@@ -116,8 +146,18 @@ public class Student implements User {
         return null;
     }
 
+    @Override
+    public int ID() {
+        return this.id;
+    }
+
+    @Override
+    public void assAssignment(AssignmentResult a) {
+        this.assignmentsTaken.add(a);
+    }
+
     public boolean pendingAssessment() {
-        System.out.print("Pending assessments");
+        System.out.println("Pending assessments");
         int count = 0;
         for ( Result quiz: this.quizzesTaken){
             if (quiz.Pending()){
@@ -136,7 +176,6 @@ public class Student implements User {
             System.out.println(" are zero");
             return false;
         }
-        System.out.println(" are " + count);
         return true;
     }
 
@@ -170,6 +209,7 @@ public class Student implements User {
     @Override
     public void menuForUser() {
         System.out.println("Welcome " + this.name);
+        System.out.println("===============");
         System.out.println("""
                 1. View lecture materials
                 2. View assessments
@@ -203,5 +243,22 @@ public class Student implements User {
     @Override
     public String toString(){
         return this.id + " - " + this.name;
+    }
+
+    public static void ungradedSubmissionStudent(int ID){
+        for ( User user : allStudents){
+            Result r = user.searchAssessment(ID);
+            if ( !r.Pending() && !r.graded()){
+                System.out.println(user.ID() + ". " + user.getName());
+            }
+        }
+    }
+
+    public static Result findSubmission(int studentID, int assessmentID){
+        User stu = search(studentID);
+        //TODO: Look into assert
+        assert stu != null;
+        return stu.searchAssessment(assessmentID);
+
     }
 }

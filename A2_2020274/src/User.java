@@ -11,4 +11,9 @@ interface User {
     public boolean Using();
 
     public abstract void addQuiz(QuizResult q);
+
+    Result searchAssessment(int id);
+    public int ID();
+
+    void assAssignment(AssignmentResult a);
 }

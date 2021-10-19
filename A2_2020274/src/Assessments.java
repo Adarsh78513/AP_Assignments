@@ -19,4 +19,9 @@ public interface Assessments {
 
     public String question();
     public int ID();
+    public int maxMarks();
+
+    String getName();
+
+    boolean open();
 }

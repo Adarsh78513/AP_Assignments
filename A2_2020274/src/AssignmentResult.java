@@ -4,6 +4,7 @@ public class AssignmentResult implements Result{
     String fileName;
     boolean pending;
     int ID;
+    boolean graded;
 
     AssignmentResult(Assignments ass){
         this.ass = ass;
@@ -11,6 +12,7 @@ public class AssignmentResult implements Result{
         this.pending = true;
         this.marksGot = -1;
         this.ID = ass.ID();
+        this.graded = false;
     }
 
     public void setFileName(String answer){
@@ -20,8 +22,15 @@ public class AssignmentResult implements Result{
     public String getFileName() {
         return this.fileName;
     }
+
+    @Override
     public void setMarksGot(int marksGot){
         this.marksGot=marksGot;
+    }
+
+    @Override
+    public boolean graded() {
+        return this.graded;
     }
 
     public int getMarksGot() {
@@ -47,6 +56,11 @@ public class AssignmentResult implements Result{
         this.fileName = Main.scanner.nextLine();
         this.pending = false;
         finish();
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + ID() + " Assignment: " + this.ass.getName() + "Max Marks: " + ass.maxMarks();
     }
 
 }

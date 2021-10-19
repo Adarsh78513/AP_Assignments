@@ -20,6 +20,10 @@ public class Assignments implements Assessments{
         this.open = true;
         this.ID = Course.totalQuizzes + Course.totalAssignments;
         Course.totalAssignments += 1;
+        for ( User stud : Student.allStudents){
+            AssignmentResult a = new AssignmentResult(this);
+            stud.assAssignment(a);
+        }
     }
 
 
@@ -40,11 +44,12 @@ public class Assignments implements Assessments{
         System.out.print("Enter max marks: ");
         int maxMarks = Integer.parseInt(Main.scanner.nextLine());
         assignMaxMarks(maxMarks);
+        allAssignments.add(this);
 	}
 
     @Override
     public String toString() {
-        return "ID:" + ID() + " Assignment: " + this.problemStatement +
+        return "ID: " + ID() + " Assignment: " + this.problemStatement +
         " Max Marks: " + this.maxMarks;
     }
 
@@ -110,6 +115,29 @@ public class Assignments implements Assessments{
 
     public int ID(){
         return this.ID;
+    }
+
+    @Override
+    public int maxMarks() {
+        return this.maxMarks;
+    }
+
+    @Override
+    public String getName() {
+        return fileName;
+    }
+
+    @Override
+    public boolean open() {
+        return this.open;
+    }
+
+    public static void printOpenAssessment(){
+        for ( Assessments a: allAssignments){
+            if ( a.open()){
+                System.out.println(a);
+            }
+        }
     }
 
 }

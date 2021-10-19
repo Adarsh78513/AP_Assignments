@@ -4,6 +4,7 @@ public class QuizResult implements Result{
     String answer;
     boolean pending;
     int ID;
+    boolean graded;
 
     QuizResult(Assessments q){
         this.q = q;
@@ -11,6 +12,7 @@ public class QuizResult implements Result{
         this.marksGot = -1;
         this.pending = true;
         this.ID = q.ID();
+        this.graded = false;
     }
 
     public void setAnswer(String answer){
@@ -20,8 +22,15 @@ public class QuizResult implements Result{
     public String getAnswer() {
         return this.answer;
     }
+
+    @Override
     public void setMarksGot(int marksGot){
         this.marksGot=marksGot;
+    }
+
+    @Override
+    public boolean graded() {
+        return this.graded;
     }
 
     public int getMarksGot() {
@@ -47,5 +56,10 @@ public class QuizResult implements Result{
         String answer = Main.scanner.nextLine();
         setAnswer(answer);
         finish();
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + ID() + " Question: " + this.q.question();
     }
 }

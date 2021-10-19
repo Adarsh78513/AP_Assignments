@@ -14,6 +14,6 @@ public class Comment {
 
     @Override
     public String toString(){
-        return this.message + " - " + user.getName() + "\n" + date;
+        return this.message + " - " + user.getName() + "\n" + date + "\n";
     }
 }

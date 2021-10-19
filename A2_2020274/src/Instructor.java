@@ -29,24 +29,15 @@ public class Instructor implements User {
             case 1 -> addClassMaterial();
             case 2 -> addAssessments();
             case 3 -> viewLectureMaterial();
-            case 4 -> {
-                viewAssessment();
-            }
-            case 5 -> {
-                //TODO: complete
-                gradeAssessments();
-            }
+            case 4 -> viewAssessment();
+            case 5 -> //TODO: complete
+                    gradeAssessments();
             case 6 -> {
                 //TODO: Chose the assessment to close
-                Assessments a = Assessments.searchAssessment(1);
-                closeAssessment(a);
+                closeAssessment();
             }
-            case 7 -> {
-                viewComments();
-            }
-            case 8 -> {
-                addComments();
-            }
+            case 7 -> viewComments();
+            case 8 -> addComments();
             case 9 -> {
                 System.out.println("Logging out...");
                 logout();
@@ -85,43 +76,55 @@ public class Instructor implements User {
     }
 
     public void addAssessments(){
+        //TODO: Complete
         System.out.println("""
                         1. Add Assignment
                         2. Add Quiz""");
         int i = Integer.parseInt(Main.scanner.nextLine());
         if ( i == 1){
-            System.out.print("Enter problem statement: ");
-            String problemStatement = Main.scanner.nextLine();
-            System.out.println("Enter max marks: ");
-            int maxMarks = Integer.parseInt(Main.scanner.nextLine());
             Assignments ass = new Assignments();
+            ass.add();
         }
         else if ( i == 2){
-            System.out.println("Enter quiz question: ");
-            String question = Main.scanner.nextLine();
-            Quiz quiz = new Quiz(question);
+            Assessments quiz = new Quiz();
+            quiz.add();
         }
     }
 
     public void gradeAssessments(){
         System.out.println("List of assessments");
+        //Print all the assessments given with their ID
         Assignments.printAll();
         System.out.println("----------");
         Quiz.printAll();
         System.out.println("----------");
 
-        System.out.println("Enter ID of assessment to view submissions: ");
+        System.out.print("Enter ID of assessment to view submissions: ");
         int assessmentID = Integer.parseInt(Main.scanner.nextLine());
         Assessments a = Assessments.searchAssessment(assessmentID);
-        //TODO: set marks for each student
+//        System.out.println(a);
+        System.out.println("Choose ID from these ungraded submissions");
+        Student.ungradedSubmissionStudent(assessmentID);
+        int studentID = Integer.parseInt(Main.scanner.nextLine());
+        System.out.println("Submission:");
 
-//        a.gradeAssessments(marks);
+        Result r = Student.findSubmission(studentID, assessmentID);
+        System.out.println("Maximum marks: " + a.maxMarks());
+        System.out.print("Marks Scored: ");
+        int marksScored = Integer.parseInt(Main.scanner.nextLine());
+        r.setMarksGot(marksScored);
     }
 
-    public void closeAssessment(Assessments a){
+    public void closeAssessment(){
+        Quiz.printOpenAssessment();
+        System.out.println("---------");
+        Assignments.printOpenAssessment();
+        System.out.println("---------");
+        System.out.print("Enter id of assignment to close: ");
+        int assessmentID = Integer.parseInt(Main.scanner.nextLine());
+        Assessments a = Assessments.searchAssessment(assessmentID);
         a.close();
     }
-
 
 
     //TODO: The video are printing twice
@@ -180,6 +183,7 @@ public class Instructor implements User {
     @Override
     public void menuForUser() {
         System.out.println("Welcome " + this.name);
+        System.out.println("===============");
         System.out.println("""
                 1. Add class material
                 2. Add assessments
@@ -200,6 +204,22 @@ public class Instructor implements User {
     @Override
     public void addQuiz(QuizResult q) {
         System.out.println("Not available");
+    }
+
+    @Override
+    public Result searchAssessment(int id) {
+        System.out.println("No such service for teacher");
+        return null;
+    }
+
+    @Override
+    public int ID() {
+        return this.id;
+    }
+
+    @Override
+    public void assAssignment(AssignmentResult a) {
+
     }
 
     public static void printAll(){

@@ -11,7 +11,7 @@ public class Quiz implements Assessments{
     private final int ID;
     
 
-    public Quiz(String question){
+    public Quiz(){
         this.question = "Not given yet";
         this.maxMarks = 1;
         this.marksGot = 0;
@@ -35,11 +35,12 @@ public class Quiz implements Assessments{
         System.out.print("Enter quiz question: ");
         String question = Main.scanner.nextLine();
         setQuestion(question);
+        allQuizzes.add(this);
     }
 
     @Override
     public String toString() {
-        return "ID: "+ ID() + "  Question: " + this.question;
+        return "ID: "+ ID() + " Question: " + this.question;
     }
 
     @Override
@@ -71,7 +72,6 @@ public class Quiz implements Assessments{
                 return quiz;
             }
         }
-        System.out.println("Quiz not found.");
         return null;
     }
 
@@ -103,5 +103,28 @@ public class Quiz implements Assessments{
     @Override
     public int ID() {
         return this.ID;
+    }
+
+    @Override
+    public int maxMarks() {
+        return this.maxMarks;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public boolean open() {
+        return this.open;
+    }
+
+    public static void printOpenAssessment(){
+        for ( Assessments quiz: allQuizzes){
+            if ( quiz.open()){
+                System.out.println(quiz);
+            }
+        }
     }
 }
