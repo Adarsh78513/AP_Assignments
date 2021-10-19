@@ -19,14 +19,34 @@ public class Backpack {
         }
 
         System.out.print("Choose id: ");
-        int id = Integer.parseInt(Main.scanner.nextLine());
+
+        //Getting the proper input
+        int id = 0;
+        boolean done = false;
+        do{
+            String temp = Main.scanner.nextLine();
+            try {
+                id = Integer.parseInt(temp);
+
+                done = true;
+            }catch(Exception e){
+                System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                System.out.println("Choose id: ");
+
+            }
+        }while(!done);
+
+
         User person;
         if ( option == 1){
             person = Instructor.search(id);
         }else {
             person = Student.search(id);
         }
-        person.login();
+
+        if ( person != null){
+            person.login();
+        }
         return person;
 	}
 }

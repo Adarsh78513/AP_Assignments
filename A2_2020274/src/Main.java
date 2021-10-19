@@ -21,7 +21,25 @@ public class Main {
                 2. Enter as student
                 3. Exit""");
 
-            int userType = Integer.parseInt(scanner.nextLine());
+            int userType = 100;
+            boolean done = false;
+            do{
+                String temp = scanner.nextLine();
+                try {
+                    userType = Integer.parseInt(temp);
+
+                    done = true;
+                }catch(Exception e){
+                    System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                    System.out.println("Please choose from the following");
+                    System.out.println("""
+                        1. Enter as instructor
+                        2. Enter as student
+                        3. Exit""");
+
+                }
+            }while(!done);
+
             if ( userType == 3 ) {
                 System.out.println("Exiting Backpack");
                 using = false;
@@ -34,11 +52,31 @@ public class Main {
                 //This returns the user that is currently using the backpack
                 personUsing = Backpack.enterBackpack(userType);
             }
-            
+
+            if ( personUsing == null){
+                continue;
+            }
+
             while (using){
                 personUsing.menuForUser();
-                int action = Integer.parseInt(scanner.nextLine());
-                //TODO: solve errors (try-catch)
+
+                //Getting the proper input
+                int action = 0;
+                done = false;
+                do{
+                    String temp = scanner.nextLine();
+                    try {
+                        action = Integer.parseInt(temp);
+
+                        done = true;
+                    }catch(Exception e){
+                        System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                        System.out.println("Please choose from the following\n");
+                        personUsing.menuForUser();
+
+                    }
+                }while(!done);
+
                 personUsing.perform(action);
 
                 using = personUsing.Using();

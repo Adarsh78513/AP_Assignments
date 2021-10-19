@@ -19,7 +19,7 @@ public class Instructor implements User {
                 return k;
             }
         }
-        System.out.println("Instructor not found");
+        System.out.println("No instructor with ID " + id + ".");
         return null;
     }
 
@@ -46,12 +46,48 @@ public class Instructor implements User {
         System.out.println("""
                         1. Add Lecture Slide
                         2. Add Lecture Video""");
-        int i = Integer.parseInt(Main.scanner.nextLine());
+
+        //taking input for action correctly
+        int i = 0;
+        boolean done = false;
+        do{
+            String temp = Main.scanner.nextLine();
+            try {
+                i = Integer.parseInt(temp);
+
+                done = true;
+            }catch(Exception e){
+                System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                System.out.println("Please choose from the following\n");
+                System.out.println("""
+                        1. Add Lecture Slide
+                        2. Add Lecture Video""");
+            }
+        }while(!done);
+
+
         if (i == 1) {
             System.out.print("Enter topic of slides: ");
             String topic = Main.scanner.nextLine();
             System.out.print("Enter number of slides: ");
-            int numberOfSlides = Integer.parseInt(Main.scanner.nextLine());
+
+            //Taking the number of slides
+            int numberOfSlides = 0;
+            done = false;
+            do{
+                String temp = Main.scanner.nextLine();
+                try {
+                    numberOfSlides = Integer.parseInt(temp);
+
+                    done = true;
+                }catch(Exception e){
+                    System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                    System.out.println("Enter number of slides: ");
+
+
+                }
+            }while(!done);
+
             System.out.println("Enter content of slides");
 
             LectureMaterial slides = new LectureSlides(topic, numberOfSlides, this);
@@ -63,11 +99,10 @@ public class Instructor implements User {
             LectureMaterial temp = new LectureVideos(this);
             System.out.print("Enter topic of video: ");
             String topic = Main.scanner.nextLine();
-            //TODO: clear this
             temp.add(temp , topic);
 
         } else {
-            System.out.println("Please enter valid action.");
+            System.out.println("Action not valid");
         }
     }
 
@@ -77,6 +112,7 @@ public class Instructor implements User {
                         1. Add Assignment
                         2. Add Quiz""");
         int i = Integer.parseInt(Main.scanner.nextLine());
+
         if ( i == 1){
             Assignments ass = new Assignments();
             ass.add();
@@ -98,6 +134,7 @@ public class Instructor implements User {
         System.out.print("Enter ID of assessment to view submissions: ");
         int assessmentID = Integer.parseInt(Main.scanner.nextLine());
         Assessments a = Assessments.searchAssessment(assessmentID);
+        if ( a == null) return;
 //        System.out.println(a);
         System.out.println("Choose ID from these ungraded submissions");
         Student.ungradedSubmissionStudent(assessmentID);
@@ -105,6 +142,7 @@ public class Instructor implements User {
         System.out.println("Submission:");
 
         Result r = Student.findSubmission(studentID, assessmentID);
+        if ( r == null) return;
         System.out.println("Maximum marks: " + a.maxMarks());
         System.out.print("Marks Scored: ");
         int marksScored = Integer.parseInt(Main.scanner.nextLine());

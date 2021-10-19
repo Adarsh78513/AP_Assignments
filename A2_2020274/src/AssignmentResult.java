@@ -27,6 +27,10 @@ public class AssignmentResult implements Result{
 
     @Override
     public void setMarksGot(int marksGot, User instructor){
+        if ( marksGot > ass.maxMarks()){
+            System.out.println("Marks received can not be more than the maximum marks. Try again");
+            return;
+        }
         this.marksGot=marksGot;
         this.graded = true;
         this.gradedBy = instructor;
@@ -81,7 +85,13 @@ public class AssignmentResult implements Result{
     @Override
     public void complete() {
         System.out.print("Enter filename of the Assignment: ");
-        fileName = Main.scanner.nextLine();
+        String temp = Main.scanner.nextLine();
+        if ( !temp.endsWith(".zip") ){
+            System.out.println("Not a valid format.");
+            System.out.println("Try submitting again.\n");
+            return;
+        }
+        fileName = temp;
         setFileName(fileName);
         this.pending = false;
         finish();

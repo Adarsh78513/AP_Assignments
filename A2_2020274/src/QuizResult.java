@@ -32,6 +32,10 @@ public class QuizResult implements Result{
 
     @Override
     public void setMarksGot(int marksGot, User instructor){
+        if ( marksGot > q.maxMarks()){
+            System.out.println("Marks received can not be more than the maximum marks. Try again");
+            return;
+        }
         this.marksGot=marksGot;
         this.graded = true;
         this.gradedBy = instructor;

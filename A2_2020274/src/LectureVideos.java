@@ -28,7 +28,7 @@ public class LectureVideos implements LectureMaterial{
         }
         else{
             System.out.println(fileName + " is not a valid file name.");
-            System.out.println("The file should be in .mp4 format");            
+            System.out.println("The file should be in .mp4 format");
         }
     }
 

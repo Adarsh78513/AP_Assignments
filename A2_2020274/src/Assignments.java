@@ -35,8 +35,29 @@ public class Assignments implements Assessments{
 		System.out.print("Enter problem statement: ");
         String problemStatement = Main.scanner.nextLine();
         addProblem(problemStatement);
-        System.out.print("Enter max marks: ");
-        int maxMarks = Integer.parseInt(Main.scanner.nextLine());
+
+
+        int maxMarks = -1;
+        boolean done = false;
+        do{
+            System.out.print("Enter max marks: ");
+            String temp = Main.scanner.nextLine();
+            try {
+
+                maxMarks = Integer.parseInt(temp);
+
+                if ( maxMarks < 0){
+                    System.out.println("Max Marks should be greater than 0.");
+                }
+
+                done = true;
+            }catch(Exception e){
+                System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                System.out.print("Enter max marks: ");
+
+            }
+        }while(!done || maxMarks < 0);
+
         assignMaxMarks(maxMarks);
         allAssignments.add(this);
 	}

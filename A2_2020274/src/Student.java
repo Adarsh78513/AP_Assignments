@@ -21,7 +21,7 @@ public class Student implements User {
                 return s;
             }
         }
-        System.out.println("Student not found");
+        System.out.println("No student with ID " + id + ".");
         return null;
     }
 
@@ -117,9 +117,26 @@ public class Student implements User {
             return;
         }
         System.out.print("Enter ID of assignment: ");
-        int ID = Integer.parseInt(Main.scanner.nextLine());
+
+        int ID = 0;
+        boolean done = false;
+        do{
+            String temp = Main.scanner.nextLine();
+            try {
+                ID = Integer.parseInt(temp);
+
+                done = true;
+            }catch(Exception e){
+                System.out.println("\n" + "\"" + temp +"\"" + " Is not a valid input.\n");
+                System.out.print("Enter ID of assignment: ");
+
+            }
+        }while(!done);
+
         Result r = searchAssessment(ID);
-        r.complete();
+        if (r != null){
+            r.complete();
+        }
     }
 
 
@@ -250,8 +267,10 @@ public class Student implements User {
 
     public static Result findSubmission(int studentID, int assessmentID){
         User stu = search(studentID);
-
-        assert stu != null;
+        if ( stu == null){
+            System.out.println("No such student exists.");
+            return null;
+        }
         return stu.searchAssessment(assessmentID);
 
     }
