@@ -1,11 +1,11 @@
 public class AssignmentResult implements Result{
-    Assignments ass;
-    int marksGot;
-    String fileName;
-    boolean pending;
-    int ID;
-    boolean graded;
-    User gradedBy;
+    private final Assignments ass;
+    private final int ID;
+    private int marksGot;
+    private String fileName;
+    private boolean pending;
+    private boolean graded;
+    private User gradedBy;
 
     AssignmentResult(Assignments ass){
         this.ass = ass;
@@ -17,7 +17,7 @@ public class AssignmentResult implements Result{
         this.gradedBy = null;
     }
 
-    public void setFileName(String answer){
+    public void setFileName(String fileName){
         this.fileName = fileName;
     }
 

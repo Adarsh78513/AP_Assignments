@@ -1,10 +1,7 @@
 public interface Assessments {
-    public void add();
-    public void complete(Assessments a);
-    public int marksGot();
-    public boolean Pending();
-    public int assessmentID();
-    public static Assessments searchAssessment(int ID){
+    void add();
+    int assessmentID();
+    static Assessments searchAssessment(int ID){
         Assessments a = Quiz.search(ID);
         if ( a == null){
             a = Assignments.search(ID);
@@ -14,14 +11,9 @@ public interface Assessments {
         }
         return a;
     }
-    public void close();
-    public void gradeAssessments(int marks);
-
-    public String question();
-    public int ID();
-    public int maxMarks();
-
-    String getProblemStatement();
-
+    void close();
+    String question();
+    int ID();
+    int maxMarks();
     boolean open();
 }

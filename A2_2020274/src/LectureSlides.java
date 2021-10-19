@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class LectureSlides implements LectureMaterial{
     static ArrayList<LectureMaterial> allSlides = new ArrayList<>();
-    String topic;
-    int numberOfSlides;
+    private String topic;
+    private final int numberOfSlides;
     ArrayList<String> content;
-    java.util.Date date;
-    User uploadedBy;
+    private final java.util.Date date;
+    private User uploadedBy;
 
     //TODO: clear these functions
     LectureSlides(String topic, int numberOfSlides, User uploasedBy){

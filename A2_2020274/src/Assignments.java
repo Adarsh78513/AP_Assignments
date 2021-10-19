@@ -1,25 +1,19 @@
 import java.util.ArrayList;
 
 public class Assignments implements Assessments{
-    String fileName;
-    String problemStatement;
-    int maxMarks;
-    int marksGot;
+    private String problemStatement;
+    private int maxMarks;
     static ArrayList<Assessments> allAssignments = new ArrayList<>();
-    boolean pending;
-    boolean open;
+    private boolean open;
     private final int ID;
     
  
     Assignments(){
-        this.fileName = "Not given";
     	this.problemStatement = "Not yet set";
         this.maxMarks = -1;
-        this.marksGot = 0;
-        this.pending = true;
         this.open = true;
-        this.ID = Course.totalQuizzes + Course.totalAssignments;
-        Course.totalAssignments += 1;
+        this.ID = Course.getTotalQuizzes() + Course.getTotalAssignments();
+        Course.totalAssignmentsIncrease();
         for ( User stud : Student.allStudents){
             AssignmentResult a = new AssignmentResult(this);
             stud.assAssignment(a);
@@ -53,28 +47,7 @@ public class Assignments implements Assessments{
         " Max Marks: " + this.maxMarks;
     }
 
-    @Override
-    public void complete(Assessments a){
-        System.out.print("Enter filename of the Assignment: ");
-        this.fileName = Main.scanner.nextLine();
-        this.pending = false;
-    }
 
-    @Override
-    public int marksGot() {
-        if ( !open && pending ){
-            System.out.println("You missed the deadline");
-        }
-        else if ( pending){
-            System.out.println("Assignment not taken yet");
-        }
-        return this.marksGot;
-    }
-
-    @Override
-    public boolean Pending() {
-        return this.pending;
-    }
 
     public static Assessments search(int ID) {
         for ( Assessments assignment: allAssignments){
@@ -96,10 +69,6 @@ public class Assignments implements Assessments{
         this.open = false;
     }
 
-    @Override
-    public void gradeAssessments(int marks) {
-        this.marksGot = marks;
-    }
 
     @Override
     public String question() {
@@ -122,10 +91,6 @@ public class Assignments implements Assessments{
         return this.maxMarks;
     }
 
-    @Override
-    public String getProblemStatement() {
-        return this.problemStatement;
-    }
 
     @Override
     public boolean open() {

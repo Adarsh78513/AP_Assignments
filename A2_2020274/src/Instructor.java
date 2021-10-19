@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Instructor implements User {
     static ArrayList<Instructor> allInstructors = new ArrayList<>();
-    String name;
-    int id;
-    boolean using;
+    private final String name;
+    private final int id;
+    private boolean using;
 
     Instructor(String name, int id){
         this.name = name;
@@ -30,12 +30,8 @@ public class Instructor implements User {
             case 2 -> addAssessments();
             case 3 -> viewLectureMaterial();
             case 4 -> viewAssessment();
-            case 5 -> //TODO: complete
-                    gradeAssessments();
-            case 6 -> {
-                //TODO: Chose the assessment to close
-                closeAssessment();
-            }
+            case 5 -> gradeAssessments();
+            case 6 -> closeAssessment();
             case 7 -> viewComments();
             case 8 -> addComments();
             case 9 -> {
@@ -76,7 +72,7 @@ public class Instructor implements User {
     }
 
     public void addAssessments(){
-        //TODO: Complete
+
         System.out.println("""
                         1. Add Assignment
                         2. Add Quiz""");
@@ -116,6 +112,7 @@ public class Instructor implements User {
     }
 
     public void closeAssessment(){
+        System.out.println("List of Open Assignments:");
         Quiz.printOpenAssessment();
         System.out.println("---------");
         Assignments.printOpenAssessment();

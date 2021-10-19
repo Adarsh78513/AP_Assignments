@@ -1,11 +1,11 @@
 public class QuizResult implements Result{
-    Assessments q;
-    int marksGot;
-    String answer;
-    boolean pending;
-    int ID;
-    boolean graded;
-    User gradedBy;
+    private final Assessments q;
+    private final int ID;
+    private int marksGot;
+    private String answer;
+    private boolean pending;
+    private boolean graded;
+    private User gradedBy;
 
     QuizResult(Assessments q){
         this.q = q;

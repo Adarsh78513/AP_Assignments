@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementKindVisitor14;
-
 public class Main {
 
     public static final Scanner scanner = new Scanner(System.in);

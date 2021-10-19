@@ -6,8 +6,6 @@ public class Backpack {
     static ArrayList<Course> allCourses = new ArrayList<>();
 
     public static User enterBackpack(int option) {
-        //TODO: take the input for option here (Not imp)
-
         switch (option) {
             case 1 -> {
                 System.out.println("Instructors:");
@@ -17,9 +15,7 @@ public class Backpack {
                 System.out.println("Student");
                 Student.printAll();
             }
-            default ->{
-                System.out.println("Not a valid option");
-            }
+            default -> System.out.println("Not a valid option");
         }
 
         System.out.print("Choose id: ");

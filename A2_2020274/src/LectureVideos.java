@@ -3,10 +3,10 @@ import java.util.Date;
 
 public class LectureVideos implements LectureMaterial{
     static ArrayList<LectureMaterial> allVideos = new ArrayList<>();
-    String topic;
-    String fileName;
-    java.util.Date date;
-    User uploadedBy;
+    private String topic;
+    private String fileName;
+    private final java.util.Date date;
+    private final User uploadedBy;
 
 
     LectureVideos(User uploadedBy) {

@@ -2,8 +2,8 @@ import java.util.Date;
 
 public class Comment {
     private final java.util.Date date;
-    String message;
-    User user;
+    private final String message;
+    private final User user;
 
 
     Comment(User user, String message){

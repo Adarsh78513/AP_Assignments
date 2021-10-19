@@ -5,9 +5,9 @@ public class Student implements User {
     ArrayList<Result> quizzesTaken = new ArrayList<>();
     ArrayList<Result> assignmentsTaken = new ArrayList<>();
 
-    String name;
-    int id;
-    boolean using;
+    private final String name;
+    private final int id;
+    private boolean using;
 
     Student(String name, int id) {
         this.name = name;
@@ -52,7 +52,6 @@ public class Student implements User {
     }
 
     private void ungradedSubmission(){
-        //TODO: make properly
         for ( Result quiz: this.quizzesTaken){
             if (!quiz.Pending() && !quiz.graded()){
                 System.out.println(quiz);
@@ -120,23 +119,9 @@ public class Student implements User {
         System.out.print("Enter ID of assignment: ");
         int ID = Integer.parseInt(Main.scanner.nextLine());
         Result r = searchAssessment(ID);
-//        Assessments a = Assessments.searchAssessment(ID);
         r.complete();
     }
 
-//    public void pendingAssessment() {
-//        System.out.println("Pending assessments");
-//        for ( Assessments quiz: Quiz.allQuizzes){
-//            if (quiz.Pending()){
-//                System.out.println(quiz);
-//            }
-//        }
-//        for ( Assessments assignment: Assignments.allAssignments){
-//            if(assignment.Pending()){
-//                System.out.println(assignment);
-//            }
-//        }
-//    }
 
     public Result searchAssessment(int ID){
         for ( Result quiz: this.quizzesTaken){
@@ -265,7 +250,7 @@ public class Student implements User {
 
     public static Result findSubmission(int studentID, int assessmentID){
         User stu = search(studentID);
-        //TODO: Look into assert
+
         assert stu != null;
         return stu.searchAssessment(assessmentID);
 
