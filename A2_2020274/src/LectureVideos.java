@@ -35,8 +35,6 @@ public class LectureVideos implements LectureMaterial{
     @Override
     public void add(LectureMaterial video, String topic) {
         addTopic(topic);
-        allVideos.add(video);
-
         System.out.print("Enter filename of the video: ");
         String fileName =  Main.scanner.nextLine();
         setFileName(video, fileName);

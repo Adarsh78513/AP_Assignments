@@ -27,12 +27,7 @@ public class Main {
                 using = false;
                 return;
             }
-            else if ( userType == 1 || userType == 2) {
-                using = true;
-            }
-            else{
-                using = false;
-            }
+            else using = userType == 1 || userType == 2;
             
             User personUsing = null;
             if ( using){

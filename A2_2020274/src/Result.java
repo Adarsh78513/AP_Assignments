@@ -1,12 +1,12 @@
 interface Result {
     boolean Pending();
-    public int ID();
-    public void complete();
-    public void setMarksGot(int marksGot, User instructor);
-    public int getMarksGot();
-    public boolean graded();
-    public String submittedFileName();
-    public String gradedBy();
+    int ID();
+    void complete();
+    void setMarksGot(int marksGot, User instructor);
+    int getMarksGot();
+    boolean graded();
+    String submittedFileName();
+    String gradedBy();
 
     String getAnswer();
 
