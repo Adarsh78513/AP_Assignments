@@ -83,6 +83,6 @@ public class QuizResult implements Result{
 
     @Override
     public String toString(){
-        return "ID: " + ID() + " Question: " + this.q.question();
+        return "ID: " + ID() + " Question: " + this.q.question() + this.answer;
     }
 }

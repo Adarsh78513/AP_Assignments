@@ -123,8 +123,6 @@ public class Instructor implements User {
         a.close();
     }
 
-
-    //TODO: The video are printing twice
     @Override
     public void viewLectureMaterial() {
         for ( LectureMaterial lectureMaterial: LectureSlides.allSlides){
