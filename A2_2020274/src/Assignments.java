@@ -123,8 +123,8 @@ public class Assignments implements Assessments{
     }
 
     @Override
-    public String getName() {
-        return fileName;
+    public String getProblemStatement() {
+        return this.problemStatement;
     }
 
     @Override

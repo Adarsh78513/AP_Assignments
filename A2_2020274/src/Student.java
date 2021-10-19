@@ -46,12 +46,13 @@ public class Student implements User {
         //TODO: print in correct format(not most imp)
         System.out.println("Graded Submission");
         gradedSubmission();
+        System.out.println("-----------");
         System.out.println("Ungraded Submission");
         ungradedSubmission();
     }
 
     private void ungradedSubmission(){
-
+        //TODO: make properly
         for ( Result quiz: this.quizzesTaken){
             if (!quiz.Pending() && !quiz.graded()){
                 System.out.println(quiz);
@@ -68,12 +69,18 @@ public class Student implements User {
     private void gradedSubmission(){
         for ( Result quiz: this.quizzesTaken){
             if (quiz.graded()){
-                System.out.println(quiz);
+                System.out.println("Answer: " + quiz.getAnswer());
+                System.out.println("Marks Scored: " + quiz.getMarksGot());
+                System.out.println("Graded by: " + quiz.gradedBy());
+//                System.out.println(quiz);
             }
         }
         for ( Result ass : this.assignmentsTaken){
             if ( ass.graded()){
-                System.out.println(ass);
+                System.out.println("Submission: " + ass.submittedFileName());
+                System.out.println("Marks Scored: " + ass.getMarksGot());
+                System.out.println("Graded by: " + ass.gradedBy());
+//                System.out.println(ass);
             }
         }
     }
@@ -157,17 +164,19 @@ public class Student implements User {
     }
 
     public boolean pendingAssessment() {
-        System.out.println("Pending assessments");
+        System.out.print("Pending assessments");
         int count = 0;
         for ( Result quiz: this.quizzesTaken){
-            if (quiz.Pending()){
+            if (!quiz.closed() && quiz.Pending()){
+                System.out.println();
                 System.out.println(quiz);
                 count += 1;
             }
         }
 
         for ( Result assignment: this.assignmentsTaken){
-            if(assignment.Pending()){
+            if(!assignment.closed() && assignment.Pending()){
+                System.out.println();
                 System.out.println(assignment);
                 count += 1;
             }

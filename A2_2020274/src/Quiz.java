@@ -111,9 +111,10 @@ public class Quiz implements Assessments{
     }
 
     @Override
-    public String getName() {
-        return null;
+    public String getProblemStatement() {
+        return this.question;
     }
+
 
     @Override
     public boolean open() {

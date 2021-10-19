@@ -21,7 +21,7 @@ public interface Assessments {
     public int ID();
     public int maxMarks();
 
-    String getName();
+    String getProblemStatement();
 
     boolean open();
 }

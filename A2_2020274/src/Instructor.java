@@ -112,7 +112,7 @@ public class Instructor implements User {
         System.out.println("Maximum marks: " + a.maxMarks());
         System.out.print("Marks Scored: ");
         int marksScored = Integer.parseInt(Main.scanner.nextLine());
-        r.setMarksGot(marksScored);
+        r.setMarksGot(marksScored, this);
     }
 
     public void closeAssessment(){

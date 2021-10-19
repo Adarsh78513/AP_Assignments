@@ -5,6 +5,7 @@ public class QuizResult implements Result{
     boolean pending;
     int ID;
     boolean graded;
+    User gradedBy;
 
     QuizResult(Assessments q){
         this.q = q;
@@ -13,6 +14,7 @@ public class QuizResult implements Result{
         this.pending = true;
         this.ID = q.ID();
         this.graded = false;
+        this.gradedBy = null;
     }
 
     public void setAnswer(String answer){
@@ -24,8 +26,15 @@ public class QuizResult implements Result{
     }
 
     @Override
-    public void setMarksGot(int marksGot){
+    public boolean closed() {
+        return !this.q.open();
+    }
+
+    @Override
+    public void setMarksGot(int marksGot, User instructor){
         this.marksGot=marksGot;
+        this.graded = true;
+        this.gradedBy = instructor;
     }
 
     @Override
@@ -33,6 +42,20 @@ public class QuizResult implements Result{
         return this.graded;
     }
 
+    @Override
+    public String gradedBy() {
+        if ( this.gradedBy == null){
+            return "Not graded";
+        }
+        return this.gradedBy.getName();
+    }
+
+    @Override
+    public String submittedFileName() {
+        return null;
+    }
+
+    @Override
     public int getMarksGot() {
         return this.marksGot;
     }

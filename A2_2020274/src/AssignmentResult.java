@@ -5,6 +5,7 @@ public class AssignmentResult implements Result{
     boolean pending;
     int ID;
     boolean graded;
+    User gradedBy;
 
     AssignmentResult(Assignments ass){
         this.ass = ass;
@@ -13,6 +14,7 @@ public class AssignmentResult implements Result{
         this.marksGot = -1;
         this.ID = ass.ID();
         this.graded = false;
+        this.gradedBy = null;
     }
 
     public void setFileName(String answer){
@@ -24,8 +26,10 @@ public class AssignmentResult implements Result{
     }
 
     @Override
-    public void setMarksGot(int marksGot){
+    public void setMarksGot(int marksGot, User instructor){
         this.marksGot=marksGot;
+        this.graded = true;
+        this.gradedBy = instructor;
     }
 
     @Override
@@ -33,6 +37,30 @@ public class AssignmentResult implements Result{
         return this.graded;
     }
 
+    @Override
+    public String submittedFileName() {
+        return this.fileName;
+    }
+
+    @Override
+    public String gradedBy() {
+        if ( this.gradedBy == null){
+            return "Not graded";
+        }
+        return this.gradedBy.getName();
+    }
+
+    @Override
+    public String getAnswer() {
+        return null;
+    }
+
+    @Override
+    public boolean closed() {
+        return !this.ass.open();
+    }
+
+    @Override
     public int getMarksGot() {
         return this.marksGot;
     }
@@ -53,14 +81,15 @@ public class AssignmentResult implements Result{
     @Override
     public void complete() {
         System.out.print("Enter filename of the Assignment: ");
-        this.fileName = Main.scanner.nextLine();
+        fileName = Main.scanner.nextLine();
+        setFileName(fileName);
         this.pending = false;
         finish();
     }
 
     @Override
     public String toString(){
-        return "ID: " + ID() + " Assignment: " + this.ass.getName() + "Max Marks: " + ass.maxMarks();
+        return "ID: " + ID() + " Assignment: " + this.getFileName() + " Max Marks: " + ass.maxMarks();
     }
 
 }
