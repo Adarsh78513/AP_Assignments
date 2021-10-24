@@ -6,28 +6,38 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("***The entries should be space seperated and " +
-                "each row should be in different line***");
-        System.out.println("Enter the matrix.");
+        int[][] list = inputMatrix();
+        System.out.println(Arrays.deepToString(list));
+    }
+
+    public static int[][] inputMatrix(){
 
         ArrayList<int[]> matrix = new ArrayList<>();
-        int[] r;
-        while (scanner.hasNextLine()) {
-            String[] s = scanner.nextLine().split(" ");
-            r = new int[s.length];
-            for ( int i = 0; i< s.length; i++ ) {
-                r[i] = Integer.parseInt(s[i]);
+        int[][] m;
+        System.out.println("Enter first row: ");
+        String s = scanner.nextLine();
+        int length = s.split(" ").length;
+        int[] temp;
+        while (!s.equals("")){
+            temp = new int[length];
+            for ( int i = 0; i < length; i++){
+                temp[i] = Integer.parseInt(s.split(" ")[i]);
             }
-            matrix.add(r);
+            matrix.add(temp);
+            System.out.println("Enter next row(Leave blank to stop): ");
+            s = scanner.nextLine();
+            if (length != s.split(" ").length){
+                System.out.println("Process terminated because of incorrect entry in a row for matrix");
+                return new int[0][0];
+            }
         }
-
-        int row = matrix.get(0).length;
-        int column = matrix.size();
-        int[][] m = new int[column][row];
-        for ( int i = 0; i < column; i++){
-            m[i] = matrix.get(i);
+         m = new int[matrix.size()][matrix.get(0).length];
+        int i = 0;
+        for ( int[] a : matrix){
+            m[i] = a;
+            i++;
         }
-        System.out.println(Arrays.deepToString(m));
-
+        return m;
     }
+
 }
