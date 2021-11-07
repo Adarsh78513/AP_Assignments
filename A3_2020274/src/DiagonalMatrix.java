@@ -1,2 +1,7 @@
-public class DiagonalMatrix extends SquareMatrix{
+public class DiagonalMatrix extends TriangularMatrix{
+    String type;
+
+    DiagonalMatrix(){
+        this.type = "Diagonal Matrix";
+    }
 }

@@ -6,38 +6,29 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int[][] list = inputMatrix();
+
+        //takes input from user for matrix
+        int[][] list = takeMatrixInput();
         System.out.println(Arrays.deepToString(list));
     }
 
-    public static int[][] inputMatrix(){
+    public static int[][] takeMatrixInput(){
+        System.out.print("Enter number of rows: ");
+        int rows = scanner.nextInt();
+        System.out.print("Enter number of columns: ");
+        int columns = scanner.nextInt();
+        int[][] matrix = new int[rows][columns];
+        for ( int i = 0; i < rows; i++){
+            System.out.print("Enter elements for row " + (i+1) + ": ");
+            for ( int j = 0; j < columns; j++){
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+        return matrix;
+    }
 
-        ArrayList<int[]> matrix = new ArrayList<>();
-        int[][] m;
-        System.out.println("Enter first row: ");
-        String s = scanner.nextLine();
-        int length = s.split(" ").length;
-        int[] temp;
-        while (!s.equals("")){
-            temp = new int[length];
-            for ( int i = 0; i < length; i++){
-                temp[i] = Integer.parseInt(s.split(" ")[i]);
-            }
-            matrix.add(temp);
-            System.out.println("Enter next row(Leave blank to stop): ");
-            s = scanner.nextLine();
-            if (length != s.split(" ").length){
-                System.out.println("Process terminated because of incorrect entry in a row for matrix");
-                return new int[0][0];
-            }
-        }
-         m = new int[matrix.size()][matrix.get(0).length];
-        int i = 0;
-        for ( int[] a : matrix){
-            m[i] = a;
-            i++;
-        }
-        return m;
+    public static void assignMatrixType(int[][] matrix){
+        Matrix.assignMatrixType(matrix);
     }
 
 }

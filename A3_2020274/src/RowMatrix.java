@@ -1,4 +1,4 @@
-public class RowMatrix implements Matrix{
+public class RowMatrix extends RectangularMatrix{
     int column, row;
     int[][] m;
 
@@ -18,16 +18,6 @@ public class RowMatrix implements Matrix{
     @Override
     public int determinant() {
         return 0;
-    }
-
-    @Override
-    public Matrix transpose() {
-        return null;
-    }
-
-    @Override
-    public void matrixType() {
-
     }
 
     @Override
@@ -66,6 +56,11 @@ public class RowMatrix implements Matrix{
     public int[][] getMatrix() {
         return this.m;
     }
+
+//    @Override
+//    public void setMatrix(int[][] matrix){
+//        this.m = matrix;
+//    }
 
     private void setRow(int row){
         this.row = row;

@@ -1,10 +1,12 @@
-public class SquareMatrix implements Matrix {
+public class SquareMatrix implements Square {
     int column, row;
     int[][] m;
+    String type;
 
     SquareMatrix(){
         this.column = this.row = 3;
         this.m = new int[column][row];
+        this.type = "Square matrix";
 
         //default value for the matrix.
         for ( int i = 0; i < column; i++){
@@ -18,11 +20,6 @@ public class SquareMatrix implements Matrix {
     public int determinant() {
         //TODO: reduce to rref and calculate determinant
         return 0;
-    }
-
-    @Override
-    public Matrix transpose() {
-        return null;
     }
 
     @Override
@@ -68,6 +65,17 @@ public class SquareMatrix implements Matrix {
     public int[][] getMatrix() {
         return this.m;
     }
+
+    @Override
+    public void setMatrix(int[][] matrix) {
+        this.m = matrix;
+    }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
+    }
+
 
     private void setRow(int row){
         this.row = row;

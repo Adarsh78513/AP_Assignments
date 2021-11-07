@@ -1,10 +1,12 @@
-public class RectangularMatrix implements Matrix{
+public class RectangularMatrix implements Rectangular{
     int column, row;
     int[][] m;
+    String type;
 
     RectangularMatrix(){
         this.column = 2;
         this.row = 3;
+        this.type = "Rectangular matrix";
 
         this.m = new int[column][row];
 
@@ -17,15 +19,16 @@ public class RectangularMatrix implements Matrix{
     }
 
     @Override
+    public void setMatrix(int[][] m){
+        this.m = m;
+    }
+
+    @Override
     public int determinant() {
         System.out.println("Invalid request.");
         return -1;
     }
 
-    @Override
-    public Matrix transpose() {
-        return null;
-    }
 
     @Override
     public void matrixType() {
@@ -69,6 +72,12 @@ public class RectangularMatrix implements Matrix{
     public int[][] getMatrix() {
         return this.m;
     }
+
+    @Override
+    public String getMatrixType() {
+        return null;
+    }
+
 
     private void setRow(int row){
         this.row = row;

@@ -1,2 +1,2 @@
-public class UpperTriangularMatrix extends SquareMatrix{
+public class UpperTriangularMatrix extends TriangularMatrix{
 }
