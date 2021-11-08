@@ -12,7 +12,6 @@ interface Matrix {
         }
     }
 
-    //TODO: define in the inherited classes
     int determinant();
     static int[][] matrixTranspose(Matrix m){
         int[][] temp = m.getMatrix();

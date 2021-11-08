@@ -32,7 +32,7 @@ public class RectangularMatrix implements Rectangular{
 
     @Override
     public void matrixType() {
-
+        System.out.println(this.type);
     }
 
     @Override

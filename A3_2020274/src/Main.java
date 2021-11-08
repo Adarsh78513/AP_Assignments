@@ -8,8 +8,11 @@ public class Main {
     public static void main(String[] args) {
 
         //takes input from user for matrix
-        int[][] list = takeMatrixInput();
-        System.out.println(Arrays.deepToString(list));
+        int[][] m = takeMatrixInput();
+        Matrix.assignMatrixType(m);
+        for (int[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     public static int[][] takeMatrixInput(){
@@ -26,9 +29,4 @@ public class Main {
         }
         return matrix;
     }
-
-    public static void assignMatrixType(int[][] matrix){
-        Matrix.assignMatrixType(matrix);
-    }
-
 }

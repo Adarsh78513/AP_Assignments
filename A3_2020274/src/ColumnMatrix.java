@@ -23,7 +23,8 @@ public class ColumnMatrix extends RectangularMatrix{
 
     @Override
     public void matrixType() {
-
+        System.out.println("Column Matrix");
+        super.matrixType();
     }
 
 

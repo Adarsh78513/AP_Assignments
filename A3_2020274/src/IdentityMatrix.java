@@ -22,4 +22,10 @@ public class IdentityMatrix extends ScalarMatrix{
             }
         }
     }
+
+    @Override
+    public void matrixType(){
+        System.out.println(this.type);
+        super.matrixType();
+    }
 }

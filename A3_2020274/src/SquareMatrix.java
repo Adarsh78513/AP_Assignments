@@ -24,7 +24,7 @@ public class SquareMatrix implements Square {
 
     @Override
     public void matrixType() {
-
+        System.out.println(this.type);
     }
 
     @Override

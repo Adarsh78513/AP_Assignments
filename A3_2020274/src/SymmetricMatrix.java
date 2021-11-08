@@ -16,4 +16,10 @@ public class SymmetricMatrix extends SquareMatrix{
         }
     }
 
+    @Override
+    public void matrixType(){
+        System.out.println(this.type);
+        super.matrixType();
+    }
+
 }

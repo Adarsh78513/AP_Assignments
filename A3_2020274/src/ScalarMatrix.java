@@ -1,4 +1,5 @@
 public class ScalarMatrix extends DiagonalMatrix{
+    String type;
     int row, column;
     int[][] m;
 
@@ -6,7 +7,7 @@ public class ScalarMatrix extends DiagonalMatrix{
         this.row = 3;
         this.column = 3;
         this.m = new int[row][column];
-
+        this.type = "Scalar Matrix";
         //default value for matrix
         for ( int i = 0; i < row; i++) {
             for ( int j = 0; j < column; j++) {
@@ -20,4 +21,11 @@ public class ScalarMatrix extends DiagonalMatrix{
             }
         }
     }
+
+    @Override
+    public void matrixType(){
+        System.out.println(this.type);
+        super.matrixType();
+    }
+
 }

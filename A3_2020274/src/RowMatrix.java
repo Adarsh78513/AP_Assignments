@@ -21,6 +21,12 @@ public class RowMatrix extends RectangularMatrix{
     }
 
     @Override
+    public void matrixType() {
+        System.out.println("Row Matrix");
+        super.matrixType();
+    }
+
+    @Override
     public Matrix divide() {
         return null;
     }

@@ -32,18 +32,7 @@ interface Square extends Matrix {
         DiagonalMatrix = UpperTriangularMatrix && LowerTriangularMatrix;
 
         //TODO: assign for singular matrix (complete the rref shit)
-        if(symmetric){
-            System.out.println("Symmetric");
-            Matrix matrix = new SymmetricMatrix();
-            matrix.setMatrix(m);
-        }
-        else if(skewSymmetric){
-            System.out.println("Skew-symmetric");
-            Matrix matrix = new SkewSymmetricMatrix();
-            matrix.setMatrix(m);
-        }
-
-        else if ( DiagonalMatrix){
+        if ( DiagonalMatrix){
             System.out.println("Diagonal Matrix");
             int temp = m[0][0];
             for ( int i = 0; i < m.length; i++){
@@ -74,6 +63,18 @@ interface Square extends Matrix {
                 matrix.setMatrix(m);
             }
         }
+        else if(symmetric){
+            System.out.println("Symmetric");
+            Matrix matrix = new SymmetricMatrix();
+            matrix.setMatrix(m);
+        }
+        else if(skewSymmetric){
+            System.out.println("Skew Symmetric Matrix");
+            Matrix matrix = new SkewSymmetricMatrix();
+            matrix.setMatrix(m);
+        }
+
+
 
         //Making triangular matrix
         else if ( TriangularMatrix){
