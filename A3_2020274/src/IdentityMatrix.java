@@ -1,12 +1,12 @@
 public class IdentityMatrix extends ScalarMatrix{
     int row, column;
-    int[][] m;
+    double[][] m;
     String type;
 
     IdentityMatrix(){
         this.row = 3;
         this.column = 3;
-        this.m = new int[row][column];
+        this.m = new double[row][column];
         this.type = "Identity Matrix";
 
         //default value for matrix

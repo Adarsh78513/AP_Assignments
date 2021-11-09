@@ -1,5 +1,5 @@
 interface Rectangular extends Matrix {
-    static void assignMatrixType(int[][] m){
+    static void assignMatrixType(double[][] m){
         System.out.println("Rectangular Matrix");
         if (m.length == 1) {
             System.out.println("This is a row matrix");

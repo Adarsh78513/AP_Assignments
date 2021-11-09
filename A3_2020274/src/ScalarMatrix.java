@@ -1,12 +1,12 @@
 public class ScalarMatrix extends DiagonalMatrix{
     String type;
     int row, column;
-    int[][] m;
+    double[][] m;
 
     ScalarMatrix(){
         this.row = 3;
         this.column = 3;
-        this.m = new int[row][column];
+        this.m = new double[row][column];
         this.type = "Scalar Matrix";
         //default value for matrix
         for ( int i = 0; i < row; i++) {

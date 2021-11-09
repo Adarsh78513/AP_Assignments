@@ -1,12 +1,12 @@
 public class LowerTriangularMatrix extends TriangularMatrix{
     int column, row;
     String type;
-    int[][] m;
+    double[][] m;
 
     LowerTriangularMatrix(){
         this.type = "Lower Triangular Matrix";
         this.column = this.row = 3;
-        this.m = new int[column][row];
+        this.m = new double[column][row];
         for(int i = 0; i < column; i++){
             for(int j = 0; j < row; j++){
                 if ( i < j){

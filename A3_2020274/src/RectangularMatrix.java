@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class RectangularMatrix implements Rectangular{
     char ID;
     int column, row;
-    int[][] m;
+    double[][] m;
     String type;
     static ArrayList<Matrix> allRectangularMatrix = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class RectangularMatrix implements Rectangular{
         this.row = 3;
         this.type = "Rectangular Matrix";
 
-        this.m = new int[column][row];
+        this.m = new double[column][row];
 
         //default value for the matrix.
         for ( int i = 0; i < column; i++){
@@ -23,7 +23,7 @@ public class RectangularMatrix implements Rectangular{
     }
 
     @Override
-    public void setMatrix(int[][] m){
+    public void setMatrix(double[][] m){
         this.m = m;
         this.column = m.length;
         this.row = m[0].length;
@@ -51,7 +51,7 @@ public class RectangularMatrix implements Rectangular{
 //    }
 
     @Override
-    public Matrix inverse() {
+    public double[][] inverse() {
         System.out.println("Inverse of a Rectangular matrix does not exist.");
         return null;
     }
@@ -80,7 +80,7 @@ public class RectangularMatrix implements Rectangular{
     }
 
     @Override
-    public int[][] getMatrix() {
+    public double[][] getMatrix() {
         return this.m;
     }
 
@@ -106,8 +106,8 @@ public class RectangularMatrix implements Rectangular{
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("This is a ").append(this.type).append(" with ID ").append(this.ID).append("\n");
-        for (int[] ints : m) {
-            for (int anInt : ints) {
+        for (double[] ints : m) {
+            for (double anInt : ints) {
                 sb.append(anInt).append(" ");
             }
             sb.append("\n");

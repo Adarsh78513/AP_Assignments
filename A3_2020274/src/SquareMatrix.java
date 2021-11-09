@@ -4,13 +4,13 @@ import java.util.Arrays;
 public class SquareMatrix implements Square {
     char ID;
     int column, row;
-    int[][] m;
+    double[][] m;
     String type;
     static ArrayList<Matrix> allSquareMatrix = new ArrayList<>();
 
     SquareMatrix(){
         this.column = this.row = 3;
-        this.m = new int[column][row];
+        this.m = new double[column][row];
         this.type = "Square Matrix";
 
         //default value for the matrix.
@@ -35,14 +35,14 @@ public class SquareMatrix implements Square {
 
 
     @Override
-    public int[][] inverse() {
+    public double[][] inverse() {
         if ( this.determinant() == 0){
             System.out.println("This matrix does not have a inverse");
             return null;
         }
         else {
-            int[][] temp = rowReduce(this.m);
-            int[][] inverse = new int[column][row];
+            double[][] temp = rowReduce(this.m);
+            double[][] inverse = new double[column][row];
             for ( int i = 0; i < column; i++) {
                 for (int j = 0; j < row; j++) {
                     inverse[i][j] = temp[j][i];
@@ -53,8 +53,8 @@ public class SquareMatrix implements Square {
     }
 
     //row reduce a matrix
-    public int[][] rowReduce(int[][] matrix){
-        int[][] reduced = modifiedMatrix(matrix);
+    public double[][] rowReduce(double[][] matrix){
+        double[][] reduced = modifiedMatrix(matrix);
         reduced = multiply(reduced, 0, reduced[0][0]);
         for ( int i = 0; i < matrix.length; i++){
             sum(reduced, i, 1, i, -1);
@@ -64,7 +64,7 @@ public class SquareMatrix implements Square {
     }
 
     //multiply rows with a number and add them
-    public int[][] sum(int[][] matrix, int row1,int mul1,  int row2, int mul2){
+    public double[][] sum(double[][] matrix, int row1,int mul1,  int row2, int mul2){
         for ( int i = 0; i < column; i++){
             matrix[i][row1] = matrix[i][row1] * mul1 - matrix[i][row2] * mul2;
         }
@@ -72,16 +72,16 @@ public class SquareMatrix implements Square {
     }
 
     //multiply row with a number
-    public int[][] multiply(int[][] matrix, int row, double mul){
+    public double[][] multiply(double[][] matrix, int row, double mul){
         for ( int i = 0; i < column; i++){
             matrix[i][row] = matrix[i][row] * mul;
         }
         return matrix;
     }
 
-    public static int[][] modifiedMatrix(int[][] matrix){
+    public static double[][] modifiedMatrix(double[][] matrix){
         //Identity matrix added at the end for calculating rref
-        int[][] bigMatrix = new int[matrix.length][matrix.length * 2];
+        double[][] bigMatrix = new double[matrix.length][matrix.length * 2];
         for ( int i = 0; i < matrix.length; i++){
             for ( int j = 0; j < matrix.length; j++){
                 bigMatrix[i][j] = matrix[i][j];
@@ -129,12 +129,12 @@ public class SquareMatrix implements Square {
     }
 
     @Override
-    public int[][] getMatrix() {
+    public double[][] getMatrix() {
         return this.m;
     }
 
     @Override
-    public void setMatrix(int[][] matrix) {
+    public void setMatrix(double[][] matrix) {
         this.m = matrix;
         this.column = this.row = m.length;
         this.ID = AllMatrix.validID();
@@ -168,8 +168,8 @@ public class SquareMatrix implements Square {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("This is a ").append(this.type).append(" with ID ").append(this.ID).append("\n");
-        for (int[] ints : m) {
-            for (int anInt : ints) {
+        for (double[] ints : m) {
+            for (double anInt : ints) {
                 sb.append(anInt).append(" ");
             }
             sb.append("\n");

@@ -97,8 +97,11 @@ public class PlatformActions {
                 case "inv":
                     Matrix t = AllMatrix.getMatrix(actions[1].charAt(0));
                     assert t != null;
-                    Matrix inv = t.inverse();
-                    System.out.println("Inverse of the matrix " + actions[1] + " is " + inv);
+                    double[][] inv = t.inverse();
+                    System.out.println("Inverse of the matrix " + actions[1] + " is ");
+                    for ( int i = 0; i < inv.length; i++){
+                        System.out.println(Arrays.toString(inv[i]));
+                    }
                     break;
                 default:
                     System.out.println("Enter a valid command.");

@@ -1,12 +1,12 @@
 public class ColumnMatrix extends RectangularMatrix{
     int column, row;
-    int[][] m;
+    double[][] m;
     String type;
 
     ColumnMatrix(){
         this.column  = 3;
         this.row = 1;
-        this.m = new int[column][row];
+        this.m = new double[column][row];
         this.type = "Column Matrix";
         //default value for the matrix.
         for ( int i = 0; i < column; i++){
@@ -33,10 +33,10 @@ public class ColumnMatrix extends RectangularMatrix{
 //        return null;
 //    }
 
-    @Override
-    public Matrix inverse() {
-        return null;
-    }
+//    @Override
+//    public Matrix inverse() {
+//        return null;
+//    }
 
     @Override
     public int getMean() {
@@ -61,7 +61,7 @@ public class ColumnMatrix extends RectangularMatrix{
     }
 
     @Override
-    public int[][] getMatrix() {
+    public double[][] getMatrix() {
         return this.m;
     }
 

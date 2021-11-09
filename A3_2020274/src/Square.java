@@ -1,5 +1,5 @@
 interface Square extends Matrix {
-    static void assignMatrixType(int[][] m){
+    static void assignMatrixType(double[][] m){
         System.out.println("Square matrix");
         boolean symmetric = true;
         boolean skewSymmetric = true;
@@ -34,7 +34,7 @@ interface Square extends Matrix {
         //TODO: assign for singular matrix (complete the rref shit)
         if ( DiagonalMatrix){
             System.out.println("Diagonal Matrix");
-            int temp = m[0][0];
+            double temp = m[0][0];
             for ( int i = 0; i < m.length; i++){
                 if (m[i][i] != temp) {
                     ScalarMatrix = false;
