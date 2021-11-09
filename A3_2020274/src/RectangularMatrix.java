@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+
 public class RectangularMatrix implements Rectangular{
+    char ID;
     int column, row;
     int[][] m;
     String type;
+    static ArrayList<Matrix> allRectangularMatrix = new ArrayList<>();
 
     RectangularMatrix(){
         this.column = 2;
         this.row = 3;
-        this.type = "Rectangular matrix";
+        this.type = "Rectangular Matrix";
 
         this.m = new int[column][row];
 
@@ -21,6 +25,12 @@ public class RectangularMatrix implements Rectangular{
     @Override
     public void setMatrix(int[][] m){
         this.m = m;
+        this.column = m.length;
+        this.row = m[0].length;
+        this.ID = AllMatrix.validID();
+        allRectangularMatrix.add(this);
+        AllMatrix.addMatrix(this);
+        System.out.println("The ID set for ths matrix is: " + this.ID);
     }
 
     @Override
@@ -35,13 +45,14 @@ public class RectangularMatrix implements Rectangular{
         System.out.println(this.type);
     }
 
-    @Override
-    public Matrix divide() {
-        return null;
-    }
+//    @Override
+//    public Matrix divide() {
+//        return null;
+//    }
 
     @Override
     public Matrix inverse() {
+        System.out.println("Inverse of a Rectangular matrix does not exist.");
         return null;
     }
 
@@ -75,7 +86,12 @@ public class RectangularMatrix implements Rectangular{
 
     @Override
     public String getMatrixType() {
-        return null;
+        return this.type;
+    }
+
+    @Override
+    public char getID() {
+        return this.ID;
     }
 
 
@@ -84,5 +100,18 @@ public class RectangularMatrix implements Rectangular{
     }
     private void setColumn(int column){
         this.column = column;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("This is a ").append(this.type).append(" with ID ").append(this.ID).append("\n");
+        for (int[] ints : m) {
+            for (int anInt : ints) {
+                sb.append(anInt).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

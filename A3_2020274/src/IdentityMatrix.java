@@ -24,8 +24,19 @@ public class IdentityMatrix extends ScalarMatrix{
     }
 
     @Override
+    public int determinant() {
+        //TODO: reduce to rref and calculate determinant
+        return 1;
+    }
+
+    @Override
     public void matrixType(){
         System.out.println(this.type);
         super.matrixType();
+    }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
     }
 }

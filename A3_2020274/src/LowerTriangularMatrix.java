@@ -24,4 +24,9 @@ public class LowerTriangularMatrix extends TriangularMatrix{
         System.out.println(this.type);
         super.matrixType();
     }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
+    }
 }

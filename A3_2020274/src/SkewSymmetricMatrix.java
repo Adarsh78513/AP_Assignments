@@ -3,7 +3,7 @@ public class SkewSymmetricMatrix extends SquareMatrix{
     String type;
 
     SkewSymmetricMatrix(){
-        type = "Skew Symmetric matrix";
+        type = "Skew-symmetric Matrix";
         this.column = 3;
         this.row = 3;
 
@@ -20,5 +20,10 @@ public class SkewSymmetricMatrix extends SquareMatrix{
     public void matrixType(){
         System.out.println(this.type);
         super.matrixType();
+    }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
     }
 }

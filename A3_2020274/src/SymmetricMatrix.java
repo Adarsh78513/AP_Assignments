@@ -21,5 +21,8 @@ public class SymmetricMatrix extends SquareMatrix{
         System.out.println(this.type);
         super.matrixType();
     }
-
+    @Override
+    public String getMatrixType() {
+        return this.type;
+    }
 }

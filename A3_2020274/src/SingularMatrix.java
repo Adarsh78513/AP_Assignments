@@ -12,4 +12,8 @@ public class SingularMatrix {
         //TODO: Set a proper matrix as default
         this.m = new int[column][row];
     }
+
+    public String getMatrixType() {
+        return this.type;
+    }
 }

@@ -39,7 +39,9 @@ interface Matrix {
                 }
             }
             System.out.println("The matrix after adding is: ");
-            System.out.println(Arrays.deepToString(m));
+            for ( int i = 0; i < x.getColumn(); i++){
+                System.out.println(Arrays.toString(m[i]));
+            }
             return m;
         }
         //returning null if the matrix can not be added(not of same size)
@@ -58,7 +60,9 @@ interface Matrix {
                 }
             }
             System.out.println("The matrix after subtracting is: ");
-            System.out.println(Arrays.deepToString(m));
+            for ( int i = 0; i < x.getColumn(); i++){
+                System.out.println(Arrays.toString(m[i]));
+            }
 
             return m;
 
@@ -73,23 +77,13 @@ interface Matrix {
             int[][] m1 = x.getMatrix();
             int[][] m2 = y.getMatrix();
             int[][] m = new int[x.getColumn()][y.getRow()];
-            for ( int i = 0 ; i < x.getColumn(); i++ ){
-                for ( int j = 0; j< y.getRow(); j++){
+            //TODO: multiplication of two matrices
 
-                    //calculating number for each place in the matrix that we need to return
-                    for ( int q = 0; q < x.getColumn(); q ++){
-                        for  (int w = 0; w < y.getRow(); w++){
-                            temp += m1[q][w] * m2[q][w];
-                        }
-                    }
-
-                    m[i][j] = temp;
-                    temp = 0;
-
-                }
-            }
+            //printing the result
             System.out.println("The matrix after multiplying is: ");
-            System.out.println(Arrays.deepToString(m));
+            for ( int i = 0; i < x.getColumn(); i++){
+                System.out.println(Arrays.toString(m[i]));
+            }
             return m;
 
         }
@@ -97,7 +91,26 @@ interface Matrix {
         return null;
     }
 
-    Matrix divide();
+    static void divide(Matrix x, Matrix y){
+        return;
+    }
+
+    public static int[][] takeMatrixInput(){
+        System.out.print("Enter number of rows: ");
+        int rows = Main.scanner.nextInt();
+        System.out.print("Enter number of columns: ");
+        int columns = Main.scanner.nextInt();
+        int[][] matrix = new int[rows][columns];
+        for ( int i = 0; i < rows; i++){
+            System.out.print("Enter elements for row " + (i+1) + ": ");
+            for ( int j = 0; j < columns; j++){
+                matrix[i][j] = Main.scanner.nextInt();
+            }
+        }
+        Matrix.assignMatrixType(matrix);
+        return matrix;
+    }
+
     Matrix inverse();
     int getMean();
     void setSizes();
@@ -106,4 +119,5 @@ interface Matrix {
     int[][] getMatrix();
     void setMatrix(int[][] matrix);
     String getMatrixType();
+    char getID();
 }

@@ -28,10 +28,10 @@ public class ColumnMatrix extends RectangularMatrix{
     }
 
 
-    @Override
-    public Matrix divide() {
-        return null;
-    }
+//    @Override
+//    public Matrix divide() {
+//        return null;
+//    }
 
     @Override
     public Matrix inverse() {
@@ -72,5 +72,10 @@ public class ColumnMatrix extends RectangularMatrix{
 
     private void setColumn(int column){
         this.column = column;
+    }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
     }
 }

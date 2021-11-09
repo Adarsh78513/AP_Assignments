@@ -5,7 +5,7 @@ public class UpperTriangularMatrix extends TriangularMatrix{
 
     UpperTriangularMatrix(){
         this.column = this.row = 3;
-        this.type = "Upper Triangular Matrix";
+        this.type = "Upper-triangular Matrix";
         this.m = new int[column][row];
         //making default upper triangular matrix
         for (int i = 0; i < column; i++) {
@@ -24,5 +24,10 @@ public class UpperTriangularMatrix extends TriangularMatrix{
     public void matrixType(){
         System.out.println(this.type);
         super.matrixType();
+    }
+
+    @Override
+    public String getMatrixType() {
+        return this.type;
     }
 }

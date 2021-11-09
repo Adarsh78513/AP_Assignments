@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.Arrays;
 
 public class PlatformActions {
     public static boolean perform(String action){
@@ -66,13 +67,24 @@ public class PlatformActions {
                     }
                     break;
                 case "show":
-                    if (actions[1].equals("-A")){
+                    if ( actions.length == 1){
+                        for ( int i = 0; i < AllMatrix.matrixTypes.length ; i++){
+                            System.out.println(i + ". " + AllMatrix.matrixTypes[i]);
+                        }
+                        System.out.print("Choose a matrix type by entering the index from above: ");
+                        int index = Integer.parseInt(Main.scanner.nextLine());
+                        AllMatrix.printMatrixType(AllMatrix.matrixTypes[index]);
+                    }
+                    else if (actions[1].equals("A")){
                         AllMatrix.printAllMatrix();
                     }
-                    else{
+                    else if ( actions[1].length() == 1){
                         Matrix temp = AllMatrix.getMatrix(actions[1].charAt(0));
                         //TODO: make override the toString functions to print out the matrix
                         System.out.println(temp);
+                    }
+                    else if (Arrays.asList(AllMatrix.matrixTypes).contains(actions[1])){
+                        AllMatrix.printMatrixType(actions[1]);
                     }
                     break;
                 case "det ":
@@ -96,7 +108,7 @@ public class PlatformActions {
 
 
 
-        return false;
+        return true;
     }
 
 }

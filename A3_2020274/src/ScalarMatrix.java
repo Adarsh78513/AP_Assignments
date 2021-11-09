@@ -28,4 +28,9 @@ public class ScalarMatrix extends DiagonalMatrix{
         super.matrixType();
     }
 
+    @Override
+    public String getMatrixType() {
+        return this.type;
+    }
+
 }

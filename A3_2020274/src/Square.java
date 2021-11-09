@@ -90,6 +90,13 @@ interface Square extends Matrix {
                 matrix.setMatrix(m);
             }
         }
+        else{
+            System.out.println("This is a general square matrix");
+            Matrix matrix = new SquareMatrix();
+            matrix.setMatrix(m);
+        }
 
     }
+
+    public char getID();
 }

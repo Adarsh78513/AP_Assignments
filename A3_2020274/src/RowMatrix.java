@@ -26,10 +26,10 @@ public class RowMatrix extends RectangularMatrix{
         super.matrixType();
     }
 
-    @Override
-    public Matrix divide() {
-        return null;
-    }
+//    @Override
+//    public Matrix divide() {
+//        return null;
+//    }
 
     @Override
     public Matrix inverse() {
