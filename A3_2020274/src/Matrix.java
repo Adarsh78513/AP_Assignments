@@ -12,7 +12,8 @@ interface Matrix {
         }
     }
 
-    double determinant();
+    double determinant(double[][] matrix);
+
     static double[][] matrixTranspose(Matrix m){
         double[][] temp = m.getMatrix();
         double[][] transpose = new double[m.getColumn()][m.getRow()];
@@ -22,8 +23,51 @@ interface Matrix {
             }
         }
         System.out.println("The transpose of the matrix is: ");
-        System.out.println(Arrays.deepToString(transpose));
+        for ( int i = 0; i < m.getColumn(); i++){
+            System.out.println(Arrays.toString(transpose[i]));
+        }
         return transpose;
+    }
+
+    public static void mean(Matrix m, char p){
+        int temp;
+        if ( p == 'r'){
+            for ( int i = 0; i< m.getRow(); i++){
+                double sum = 0;
+                for ( int j = 0; j < m.getColumn(); j++){
+                    sum += m.getMatrix()[i][j];
+                }
+                temp = i + 1;
+                sum = sum / m.getColumn();
+                System.out.println("Mean of row " + temp +  " is " + sum + ".");
+            }
+        }
+        else if ( p == 'c'){
+            for ( int i = 0; i< m.getColumn(); i++){
+                double sum = 0;
+                for ( int j = 0; j < m.getRow(); j++){
+                    sum += m.getMatrix()[j][i];
+
+                }
+                temp = i + 1;
+                sum = sum / m.getRow();
+                System.out.println("Mean of column " + temp +  " is " + sum + ".");
+            }
+        }
+        else if ( p == 'a'){
+            double sum = 0;
+            for ( int i = 0; i< m.getColumn(); i++){
+                for ( int j = 0; j < m.getRow(); j++){
+                    sum += m.getMatrix()[j][i];
+                }
+            }
+            sum = sum / (m.getColumn() * m.getRow());
+            System.out.println("Mean of the matrix is " + sum + ".");
+        }
+        else{
+            System.out.println("Invalid input.");
+        }
+
     }
 
     void matrixType();
@@ -32,6 +76,8 @@ interface Matrix {
         if (y.getColumn() == x.getColumn() && y.getRow() == x.getRow()){
             double[][] m1 = x.getMatrix();
             double[][] m2 = y.getMatrix();
+            System.out.println(Arrays.deepToString(m1));
+            System.out.println(Arrays.deepToString(m2));
             double[][] m = new double[x.getColumn()][x.getRow()];
             for ( int i = 0 ; i < x.getColumn(); i++ ){
                 for ( int j = 0; j< x.getRow(); j++){
@@ -111,7 +157,75 @@ interface Matrix {
         return matrix;
     }
 
-    double[][] inverse();
+    static void createMatrix(int matrixType){
+        Matrix matrix;
+        switch (matrixType) {
+            case 1 -> {
+                matrix = new RectangularMatrix();
+                matrix.setMatrix();
+            }
+            case 2 -> {
+                matrix = new RowMatrix();
+                matrix.setMatrix();
+            }
+            case 3 -> {
+                matrix = new ColumnMatrix();
+                matrix.setMatrix();
+            }
+            case 4 -> {
+                matrix = new SquareMatrix();
+                matrix.setMatrix();
+            }
+            case 5 -> {
+                matrix = new SymmetricMatrix();
+                matrix.setMatrix();
+            }
+            case 6 -> {
+                matrix = new SkewSymmetricMatrix();
+                matrix.setMatrix();
+            }
+            case 7 -> {
+                matrix = new UpperTriangularMatrix();
+                matrix.setMatrix();
+            }
+            case 8 -> {
+                matrix = new LowerTriangularMatrix();
+                matrix.setMatrix();
+            }
+            case 9 -> {
+                matrix = new SingularMatrix();
+                matrix.setMatrix();
+            }
+            case 10 -> {
+                matrix = new DiagonalMatrix();
+                matrix.setMatrix();
+            }
+            case 11 -> {
+                matrix = new ScalarMatrix();
+                matrix.setMatrix();
+            }
+            case 12 -> {
+                matrix = new IdentityMatrix();
+                matrix.setMatrix();
+            }
+            case 13 -> {
+                matrix = new SingletonMatrix();
+                matrix.setMatrix();
+            }
+            case 14 -> {
+                matrix = new OnesMatrix();
+                matrix.setMatrix();
+            }
+            case 15 -> {
+                matrix = new NullMatrix();
+                matrix.setMatrix();
+            }
+            default -> System.out.println("Invalid input.");
+        }
+    }
+
+    public void setMatrix();
+    double[][] inverse(double[][] a);
     int getMean();
     void setSizes();
     int getRow();

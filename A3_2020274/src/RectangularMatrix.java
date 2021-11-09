@@ -39,7 +39,7 @@ public class RectangularMatrix implements Rectangular{
     }
 
     @Override
-    public double determinant(double[][] matrix, int n) {
+    public double determinant(double[][] matrix) {
         System.out.println("Invalid request.");
         return -1;
     }

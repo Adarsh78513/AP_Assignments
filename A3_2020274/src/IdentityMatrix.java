@@ -25,7 +25,7 @@ public class IdentityMatrix extends ScalarMatrix{
     }
 
     @Override
-    public double determinant(double[][] matrix, int n) {
+    public double determinant(double[][] matrix) {
         //TODO: reduce to rref and calculate determinant
         return 1;
     }

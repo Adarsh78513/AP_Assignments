@@ -18,7 +18,7 @@ public class ColumnMatrix extends RectangularMatrix{
     }
 
     @Override
-    public double determinant(double[][] matrix, int n) {
+    public double determinant(double[][] matrix) {
         return 0;
     }
 

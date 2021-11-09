@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SquareMatrix implements Square {
     char ID;
@@ -16,123 +15,55 @@ public class SquareMatrix implements Square {
         this.m = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
     }
 
-//    @Override
-//    public double determinant() {
-//        //TODO: reduce to rref and calculate determinant
-//
-//
-//        return 2;
-//    }
-    //TODO:Remove this method
     @Override
-    public double determinant(double A[][],int N) {
-        double det = 0;
-        if (N == 1) {
-            det = A[0][0];
-        } else if (N == 2) {
-            det = A[0][0] * A[1][1] - A[1][0] * A[0][1];
-        } else {
-            det = 0;
-            for (int j1 = 0; j1 < N; j1++) {
-                double[][] m = new double[N - 1][];
-                for (int k = 0; k < (N - 1); k++) {
-                    m[k] = new double[N - 1];
-                }
-                for (int i = 1; i < N; i++) {
-                    int j2 = 0;
-                    for (int j = 0; j < N; j++) {
-                        if (j == j1)
-                            continue;
-                        m[i - 1][j2] = A[i][j];
-                        j2++;
-                    }
-                }
-                det += Math.pow(-1.0, 1.0 + j1 + 1.0) * A[0][j1] * determinant(m, N - 1);
-            }
+    public double determinant(double[][] matrix) {
+        double det;
+        int size = matrix.length;
+        if (size == 1) {
+            det = matrix[0][0];
+        }
+        else if (size == 2) {
+            det = matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+        }
+        else {
+            det = matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+                    matrix[0][1] *(matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+                    matrix[0][2] *(matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
         }
         return det;
     }
 
     @Override
+    public double[][] inverse(double[][] a){
+        if (this.determinant(this.getMatrix() ) == 0){
+            System.out.println("The matrix is not invertible");
+            return null;
+        }
+        if ( this.getRow() == 1){
+            return new double[][]{{1.0 / this.getMatrix()[0][0]}};
+        }
+        else if ( this.getRow() == 2){
+            double det = this.determinant(this.getMatrix());
+            return new double[][]{{(this.getMatrix()[1][1]) /det, (this.getMatrix()[0][1] * (-1))/det},
+                    { (-1 * this.getMatrix()[1][0]) /det, (this.getMatrix()[0][0]) / det}};
+        }
+        else {
+            double det = this.determinant(this.getMatrix());
+            double[][] temp = this.getMatrix();
+            double[][] m = new double[3][3];
+            for (int i = 0; i < 3; i++){
+                for (int j = 0; j < 3; j++){
+                    m[i][j] = ((temp[(j + 1) % 3][(i + 1) % 3] * temp[(j+ 2) % 3][( i + 2) % 3]) -
+                            (temp[( j + 1) %3][( i + 2) %3 ] * temp[( j + 2 ) % 3][( i + 1 ) % 3])) / det;
+                }
+            }
+            return m;
+        }
+    }
+
+    @Override
     public void matrixType() {
         System.out.println(this.type);
-    }
-
-
-
-//    @Override
-//    public double[][] inverse() {
-//        if ( this.determinant(this.getMatrix(), this.getMatrix().length) == 0){
-//            System.out.println("This matrix does not have a inverse");
-//            return null;
-//        }
-//        else {
-//            double[][] temp = rowReduce(this.m);
-//            double[][] inverse = new double[column][row];
-//            for ( int i = 0; i < column; i++) {
-//                for (int j = 0; j < row; j++) {
-//                    inverse[i][j] = temp[j][i];
-//                }
-//            }
-//            for ( int i = 0; i < column; i++){
-//                System.out.println(Arrays.toString(inverse[i]));
-//            }
-//            return inverse;
-//        }
-//    }
-
-    //row reduce a matrix
-    public double[][] rowReduce(double[][] matrix){
-        double[][] reduced = modifiedMatrix(matrix);
-        for ( int i = 0; i < matrix.length - 1; i++){
-            reduced = multiply(reduced, i, 1.0 / reduced[i][i]);
-
-            for ( int j = i + 1; j < matrix.length; j++){
-                reduced = sum(reduced, i + 1, 1, i, -1 * (reduced[i + 1][i]));
-                System.out.println("Row reducing the matrix");
-                System.out.println(Arrays.deepToString(reduced));
-            }
-
-        }
-
-        return reduced;
-    }
-
-    //TODO: Remove these functions too
-    @Override
-    public double[][] inverse(double[][] a) {
-        int n = a.length;
-        double[][] x = new double[n][n];
-        double[][] b = new double[n][n];
-        int[] index = new int[n];
-        for (int i=0; i<n; ++i)
-            b[i][i] = 1;
-
-        // Transform the matrix into an upper triangle
-        gaussian(a, index);
-
-        // Update the matrix b[i][j] with the ratios stored
-        for (int i=0; i<n-1; ++i)
-            for (int j=i+1; j<n; ++j)
-                for (int k=0; k<n; ++k)
-                    b[index[j]][k]
-                            -= a[index[j]][i]*b[index[i]][k];
-
-        // Perform backward substitutions
-        for (int i=0; i<n; ++i)
-        {
-            x[n-1][i] = b[index[n-1]][i]/a[index[n-1]][n-1];
-            for (int j=n-2; j>=0; --j)
-            {
-                x[j][i] = b[index[j]][i];
-                for (int k=j+1; k<n; ++k)
-                {
-                    x[j][i] -= a[index[j]][k]*x[k][i];
-                }
-                x[j][i] /= a[index[j]][j];
-            }
-        }
-        return x;
     }
 
 // Method to carry out the partial-pivoting Gaussian

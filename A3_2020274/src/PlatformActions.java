@@ -93,7 +93,7 @@ public class PlatformActions {
                 case "det":
                     Matrix temp = AllMatrix.getMatrix(actions[1].charAt(0));
                     assert temp != null;
-                    double det = temp.determinant(temp.getMatrix(), temp.getMatrix().length);
+                    double det = temp.determinant(temp.getMatrix());
                     System.out.println("Determinant of the matrix with ID "
                             + actions[1] + " is " + det);
                     break;
@@ -144,6 +144,27 @@ public class PlatformActions {
                     Matrix t4 = AllMatrix.getMatrix(actions[1].charAt(0));
                     assert t4 != null;
                     t4.matrixType();
+                    break;
+                case "st":
+                    Matrix t5 = AllMatrix.getMatrix(actions[1].charAt(0));
+                    assert t5 != null;
+                    if ( t5.getRow() != t5.getColumn()){
+                        System.out.println("This matrix can not be added with it's transpose.");
+                        break;
+                    }
+                    double[][] m2 = Matrix.matrixTranspose(t5);
+                    double[][] m1 = t5.getMatrix();
+                    double[][] m = new double[t5.getColumn()][t5.getRow()];
+                    for ( int i = 0 ; i < t5.getColumn(); i++ ){
+                        for ( int j = 0; j< t5.getRow(); j++){
+                            m[i][j] = m1[i][j] + m2[i][j];
+                        }
+                    }
+                    System.out.println("The sum of the matrix and it's transpose is: ");
+                    for ( int i = 0; i < t5.getColumn(); i++){
+                        System.out.println(Arrays.toString(m[i]));
+                    }
+
                     break;
                 default:
                     System.out.println("Enter a valid command.");
