@@ -7,7 +7,7 @@ interface Square extends Matrix {
         boolean UpperTriangularMatrix = true;
         boolean LowerTriangularMatrix = true;
         boolean DiagonalMatrix = true;
-        boolean IdentityMatrix = true;
+        boolean IdentityMatrix = false;
         boolean ScalarMatrix = true;
 
         for(int i = 0; i < m.length; i++){
@@ -33,7 +33,7 @@ interface Square extends Matrix {
 
         //TODO: assign for singular matrix (complete the rref shit)
         if ( DiagonalMatrix){
-            System.out.println("Diagonal Matrix");
+            System.out.println("This is a diagonal Matrix");
             double temp = m[0][0];
             for ( int i = 0; i < m.length; i++){
                 if (m[i][i] != temp) {
@@ -42,8 +42,8 @@ interface Square extends Matrix {
                 }
             }
             if ( ScalarMatrix){
-                if ( temp != 1){
-                    IdentityMatrix = false;
+                if ( temp == 1){
+                    IdentityMatrix = true;
                 }
             }
 

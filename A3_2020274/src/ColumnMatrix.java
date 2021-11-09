@@ -2,6 +2,7 @@ public class ColumnMatrix extends RectangularMatrix{
     int column, row;
     double[][] m;
     String type;
+    char ID;
 
     ColumnMatrix(){
         this.column  = 3;
@@ -17,7 +18,7 @@ public class ColumnMatrix extends RectangularMatrix{
     }
 
     @Override
-    public double determinant() {
+    public double determinant(double[][] matrix, int n) {
         return 0;
     }
 
@@ -65,11 +66,6 @@ public class ColumnMatrix extends RectangularMatrix{
         return this.m;
     }
 
-//    @Override
-//    public void setMatrix(int[][] matrix){
-//        this.m = matrix;
-//    }
-
     private void setColumn(int column){
         this.column = column;
     }
@@ -77,5 +73,44 @@ public class ColumnMatrix extends RectangularMatrix{
     @Override
     public String getMatrixType() {
         return this.type;
+    }
+
+    @Override
+    public void setMatrix(double[][] matrix) {
+        this.m = matrix;
+        this.row = m.length;
+        this.column = m[0].length;
+        this.ID = AllMatrix.validID();
+        allRectangularMatrix.add(this);
+        AllMatrix.addMatrix(this);
+        System.out.println("The ID set for ths matrix is: " + this.ID);
+    }
+
+    @Override
+    public void setMatrix(){
+        this.row = m.length;
+        this.column = m[0].length;
+        this.ID = AllMatrix.validID();
+        allRectangularMatrix.add(this);
+        AllMatrix.addMatrix(this);
+        System.out.println("The ID set for ths matrix is: " + this.ID);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("This is a ").append(this.type).append(" with ID ").append(this.ID).append("\n");
+        for (double[] ints : m) {
+            for (double anInt : ints) {
+                sb.append(anInt).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public char getID() {
+        return this.ID;
     }
 }

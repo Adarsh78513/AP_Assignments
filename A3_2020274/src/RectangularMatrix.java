@@ -2,31 +2,26 @@ import java.util.ArrayList;
 
 public class RectangularMatrix implements Rectangular{
     char ID;
-    int column, row;
+    int column;
+    int row;
     double[][] m;
     String type;
     static ArrayList<Matrix> allRectangularMatrix = new ArrayList<>();
 
     RectangularMatrix(){
-        this.column = 2;
-        this.row = 3;
+        this.column = 3;
+        this.row = 2;
         this.type = "Rectangular Matrix";
 
-        this.m = new double[column][row];
-
         //default value for the matrix.
-        for ( int i = 0; i < column; i++){
-            for ( int j = 0; j< row; j++){
-                m[i][j] = (i + 1)* (j + 1);
-            }
-        }
+        this.m = new double[][]{{1, 2, 3}, {4, 5, 6}};
     }
 
     @Override
-    public void setMatrix(double[][] m){
-        this.m = m;
-        this.column = m.length;
-        this.row = m[0].length;
+    public void setMatrix(double[][] matrix) {
+        this.m = matrix;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
@@ -34,7 +29,17 @@ public class RectangularMatrix implements Rectangular{
     }
 
     @Override
-    public double determinant() {
+    public void setMatrix(){
+        this.row = m.length;
+        this.column = m[0].length;
+        this.ID = AllMatrix.validID();
+        allRectangularMatrix.add(this);
+        AllMatrix.addMatrix(this);
+        System.out.println("The ID set for ths matrix is: " + this.ID);
+    }
+
+    @Override
+    public double determinant(double[][] matrix, int n) {
         System.out.println("Invalid request.");
         return -1;
     }
@@ -51,7 +56,7 @@ public class RectangularMatrix implements Rectangular{
 //    }
 
     @Override
-    public double[][] inverse() {
+    public double[][] inverse(double a[][]) {
         System.out.println("Inverse of a Rectangular matrix does not exist.");
         return null;
     }

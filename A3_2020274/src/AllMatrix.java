@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AllMatrix {
     static char id = 'a';
@@ -44,10 +45,26 @@ public class AllMatrix {
         }
     }
 
+    //print all matrix types
+    public static void printAllMatrixTypes(){
+        int i = 1;
+        for(String matrixType : matrixTypes){
+            System.out.println(i + ". " + matrixType);
+            i++;
+        }
+    }
+
     public static void printMatrixType(String type) {
         for(Matrix matrix : allMatrix){
             if(matrix.getMatrixType().equals(type)){
                 System.out.println(matrix);
+            }
+        }
+        if (Objects.equals(type, "Singleton Matrix")){
+            for(Matrix matrix : allMatrix){
+                if(matrix.getMatrixType().equals("Scalar Matrix")){
+                    System.out.println(matrix);
+                }
             }
         }
     }
