@@ -12,7 +12,7 @@ interface Matrix {
         }
     }
 
-    int determinant();
+    double determinant();
     static double[][] matrixTranspose(Matrix m){
         double[][] temp = m.getMatrix();
         double[][] transpose = new double[m.getColumn()][m.getRow()];

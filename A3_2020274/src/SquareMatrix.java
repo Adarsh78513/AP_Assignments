@@ -22,8 +22,10 @@ public class SquareMatrix implements Square {
     }
 
     @Override
-    public int determinant() {
+    public double determinant() {
         //TODO: reduce to rref and calculate determinant
+
+
         return 2;
     }
 
@@ -48,6 +50,9 @@ public class SquareMatrix implements Square {
                     inverse[i][j] = temp[j][i];
                 }
             }
+            for ( int i = 0; i < column; i++){
+                System.out.println(Arrays.toString(inverse[i]));
+            }
             return inverse;
         }
     }
@@ -55,18 +60,24 @@ public class SquareMatrix implements Square {
     //row reduce a matrix
     public double[][] rowReduce(double[][] matrix){
         double[][] reduced = modifiedMatrix(matrix);
-        reduced = multiply(reduced, 0, reduced[0][0]);
-        for ( int i = 0; i < matrix.length; i++){
-            sum(reduced, i, 1, i, -1);
+        for ( int i = 0; i < matrix.length - 1; i++){
+            reduced = multiply(reduced, i, 1.0 / reduced[i][i]);
+
+            for ( int j = i + 1; j < matrix.length; j++){
+                reduced = sum(reduced, i + 1, 1, i, -1 * (reduced[i + 1][i]));
+                System.out.println("Row reducing the matrix");
+                System.out.println(Arrays.deepToString(reduced));
+            }
+
         }
 
         return reduced;
     }
 
     //multiply rows with a number and add them
-    public double[][] sum(double[][] matrix, int row1,int mul1,  int row2, int mul2){
+    public double[][] sum(double[][] matrix, int row1,double mul1,  int row2, double mul2){
         for ( int i = 0; i < column; i++){
-            matrix[i][row1] = matrix[i][row1] * mul1 - matrix[i][row2] * mul2;
+            matrix[i][row1] = matrix[i][row1] * mul1 + matrix[i][row2] * mul2;
         }
         return matrix;
     }

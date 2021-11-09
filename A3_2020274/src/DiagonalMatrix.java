@@ -19,7 +19,7 @@ public class DiagonalMatrix extends TriangularMatrix{
         super.matrixType();
     }
     @Override
-    public int determinant() {
+    public double determinant() {
         int temp = 1;
         for (int i = 0; i < this.m.length; i++) {
             temp *= this.m[i][i];

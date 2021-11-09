@@ -16,7 +16,7 @@ public class RowMatrix extends RectangularMatrix{
 
     }
     @Override
-    public int determinant() {
+    public double determinant() {
         return 0;
     }
 

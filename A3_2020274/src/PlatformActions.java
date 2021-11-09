@@ -56,7 +56,7 @@ public class PlatformActions {
                 case "Exit":
                 case "exit":
                     return false;
-                case "emat":
+                case "enter":
                     //taking matrix input from the user
                     Matrix.takeMatrixInput();
                     break;
@@ -90,7 +90,7 @@ public class PlatformActions {
                 case "det ":
                     Matrix temp = AllMatrix.getMatrix(actions[1].charAt(0));
                     assert temp != null;
-                    int det = temp.determinant();
+                    double det = temp.determinant();
                     System.out.println("Determinant of the matrix with ID "
                             + actions[1] + " is " + det);
                     break;

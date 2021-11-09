@@ -34,7 +34,7 @@ public class RectangularMatrix implements Rectangular{
     }
 
     @Override
-    public int determinant() {
+    public double determinant() {
         System.out.println("Invalid request.");
         return -1;
     }

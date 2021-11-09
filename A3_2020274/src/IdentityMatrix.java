@@ -24,7 +24,7 @@ public class IdentityMatrix extends ScalarMatrix{
     }
 
     @Override
-    public int determinant() {
+    public double determinant() {
         //TODO: reduce to rref and calculate determinant
         return 1;
     }
