@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ScalarMatrix extends DiagonalMatrix{
     String type;
     int row, column;
@@ -52,6 +54,10 @@ public class ScalarMatrix extends DiagonalMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

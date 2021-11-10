@@ -1,5 +1,7 @@
 //Square matrix with the value of determinant equal to zero
 
+import java.util.Arrays;
+
 public class SingularMatrix extends SquareMatrix{
 
     char ID;
@@ -10,7 +12,6 @@ public class SingularMatrix extends SquareMatrix{
     SingularMatrix(){
         this.type = "Singular Matrix";
         this.row = this.column = 3;
-        //TODO: Set a proper matrix as default
         this.m = new double[][]{{3, 3, 3}, {3, 3, 3}, {3, 3, 3}};
     }
 
@@ -36,6 +37,10 @@ public class SingularMatrix extends SquareMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

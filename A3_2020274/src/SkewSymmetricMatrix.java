@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SkewSymmetricMatrix extends SquareMatrix{
     char ID;
     int column, row;
@@ -63,6 +65,10 @@ public class SkewSymmetricMatrix extends SquareMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

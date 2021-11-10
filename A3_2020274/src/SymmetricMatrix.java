@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SymmetricMatrix extends SquareMatrix{
     int column, row;
     double[][] m;
@@ -44,6 +46,10 @@ public class SymmetricMatrix extends SquareMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TriangularMatrix extends SquareMatrix {
     char ID;
 
@@ -6,7 +8,7 @@ public class TriangularMatrix extends SquareMatrix {
         super.matrixType();
     }
 
-    //TODO: check if this works for all the lower classes
+
     @Override
     public double determinant(double[][] matrix) {
         int temp = 1;
@@ -55,6 +57,11 @@ public class TriangularMatrix extends SquareMatrix {
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
+
     }
 
     @Override

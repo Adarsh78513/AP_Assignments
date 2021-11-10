@@ -120,73 +120,91 @@ interface Matrix {
     void matrixType();
 
     static double[][] add(Matrix x, Matrix y){
-        if (y.getColumn() == x.getColumn() && y.getRow() == x.getRow()){
-            double[][] m1 = x.getMatrix();
-            double[][] m2 = y.getMatrix();
-            System.out.println(Arrays.deepToString(m1));
-            System.out.println(Arrays.deepToString(m2));
-            double[][] m = new double[x.getColumn()][x.getRow()];
-            for ( int i = 0 ; i < x.getColumn(); i++ ){
-                for ( int j = 0; j< x.getRow(); j++){
-                    m[i][j] = m1[i][j] + m2[i][j];
-                }
-            }
-            System.out.println("The matrix after adding is: ");
-            for ( int i = 0; i < x.getColumn(); i++){
-                System.out.println(Arrays.toString(m[i]));
-            }
-            return m;
+        if ( x.getRow() != y.getRow() || x.getColumn() != y.getColumn() ){
+            System.out.println("These matrices can not be added.");
+            return null;
         }
-        //returning null if the matrix can not be added(not of same size)
-        System.out.println("These matrices can not be added together.");
-        return null;
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        double[][] m = new double[x.getRow()][x.getColumn()];
+        for (int i = 0; i < x.getRow(); i++) {
+            for (int j = 0; j < x.getColumn(); j++) {
+                m[i][j] = m1[i][j] + m2[i][j];
+            }
+        }
+
+        System.out.println("Sum of the matrix " + x.getID() + " and " + y.getID() + " is:");
+        for (int i = 0; i < x.getRow(); i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+        return m;
     }
     static double[][] subtract(Matrix x, Matrix y){
-        //subtract the matrix y from the matrix x
-        if (y.getColumn() == x.getColumn() && y.getRow() == x.getRow()){
-            double[][] m1 = x.getMatrix();
-            double[][] m2 = y.getMatrix();
-            double[][] m = new double[x.getColumn()][x.getRow()];
-            for ( int i = 0 ; i < x.getColumn(); i++ ){
-                for ( int j = 0; j< x.getRow(); j++){
-                    m[i][j] = m1[i][j] - m2[i][j];
-                }
-            }
-            System.out.println("The matrix after subtracting is: ");
-            for ( int i = 0; i < x.getColumn(); i++){
-                System.out.println(Arrays.toString(m[i]));
-            }
-
-            return m;
-
+        if ( x.getRow() != y.getRow() || x.getColumn() != y.getColumn() ){
+            System.out.println("These matrices can not be subtracted.");
+            return null;
         }
-        //returning null if the matrices can not be subtracted
-        System.out.println("These matrices can not be subtracted together.");
-        return null;
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        double[][] m = new double[x.getRow()][x.getColumn()];
+        for (int i = 0; i < x.getRow(); i++) {
+            for (int j = 0; j < x.getColumn(); j++) {
+                m[i][j] = m1[i][j] - m2[i][j];
+            }
+        }
+
+        System.out.println("Difference of the matrix " + x.getID() + " and " + y.getID() + " is:");
+        for (int i = 0; i < x.getRow(); i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+        return m;
     }
     static double[][] multiply(Matrix x, Matrix y){
-        if (y.getColumn() == x.getRow() && y.getRow() == x.getColumn()){
-            int temp = 0;
-            double[][] m1 = x.getMatrix();
-            double[][] m2 = y.getMatrix();
-            double[][] m = new double[x.getColumn()][y.getRow()];
-            //TODO: multiplication of two matrices
-
-            //printing the result
-            System.out.println("The matrix after multiplying is: ");
-            for ( int i = 0; i < x.getColumn(); i++){
-                System.out.println(Arrays.toString(m[i]));
-            }
-            return m;
-
+        if ( x.getColumn() != y.getRow() ){
+            System.out.println("These matrices can not be multiplied.");
+            return null;
         }
-        System.out.println("These matrices can not be added together.");
-        return null;
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        double[][] m = new double[x.getRow()][y.getColumn()];
+        for (int i = 0; i < x.getRow(); i++) {
+            for (int j = 0; j < y.getColumn(); j++) {
+                for (int k = 0; k < x.getColumn(); k++) {
+                    m[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+
+        System.out.println("Product of the matrix " + x.getID() + " and " + y.getID() + " is:");
+        for (int i = 0; i < x.getRow(); i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+        return m;
     }
 
-    static void divide(Matrix x, Matrix y){
-        return;
+    static double[][] multiply(double[][] m1, double[][] m2){
+        if ( m1.length != m2[0].length || m1[0].length != m2.length ){
+            System.out.println("These matrices can not be multiplied.");
+            return null;
+        }
+        double[][] m = new double[m1.length][m2[0].length];
+        for (int i = 0; i < m1.length; i++) {
+            for (int j = 0; j < m2[0].length; j++) {
+                for (int k = 0; k < m1[0].length; k++) {
+                    m[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+
+        System.out.println("Product of the matrix is:");
+        for (int i = 0; i < m1.length; i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+        return m;
     }
+
+    void divide(Matrix x, Matrix y);
+
 
     public static double[][] takeMatrixInput(){
         System.out.print("Enter number of rows: ");

@@ -69,7 +69,7 @@ public class PlatformActions {
 
                 assert x != null;
                 assert y != null;
-                Matrix.divide(x, y);
+                x.divide(x, y);
             }
             else{
                 System.out.println("Not a valid instruction.");
@@ -86,11 +86,8 @@ public class PlatformActions {
                     //taking matrix input from the user
                     Matrix.takeMatrixInput();
                     break;
-//                case "c":
-//                    //for when we need to create a new matrix of a type
-//                    if (actions.length == 1){
-//                    }
-//                    break;
+                case "":
+                    break;
                 case "show":
                     if ( actions.length == 1){
 
@@ -109,7 +106,6 @@ public class PlatformActions {
                     }
                     else if ( actions[1].length() == 1){
                         Matrix temp = AllMatrix.getMatrix(actions[1].charAt(0));
-                        //TODO: make override the toString functions to print out the matrix
                         System.out.println(temp);
                     }
                     else if (Arrays.asList(AllMatrix.matrixTypes).contains(actions[1])){
@@ -128,8 +124,8 @@ public class PlatformActions {
                     assert t != null;
                     double[][] inv = t.inverse(t.getMatrix());
                     System.out.println("Inverse of the matrix " + actions[1] + " is ");
-                    for ( int i = 0; i < inv.length; i++){
-                        System.out.println(Arrays.toString(inv[i]));
+                    for (double[] doubles : inv) {
+                        System.out.println(Arrays.toString(doubles));
                     }
                     break;
                 case "create":
@@ -159,7 +155,6 @@ public class PlatformActions {
                         a = actions[2].charAt(0);
                     }
                     Matrix.mean(t3, a);
-                    //TODO: mean function
                     break;
                 case "type":
                     if(actions.length == 1){
@@ -199,8 +194,10 @@ public class PlatformActions {
                             2. Create matrices of requested matrix-types and label them with appropriate matrix-types. >> create
                             3. Display all the matrix-type labels of a requested matrix. >> type a
                             \t(here a is the matrix ID)
-                            4. Perform addition, subtraction, multiplication & division. >> a + b or a - b or a * b....here a and b are the matrix ID
-                            5.\s
+                            4. Perform addition, subtraction, multiplication & division. >> a + b or a - b or a * b
+                            \t(here a and b are the matrix ID)
+                            5. Perform element-wise operations. >> a.*b and a./b
+                            \t(here a and b are the matrix ID)\t**The commands are similar to that in MATLAB\t\t\t\t
                             6. Transpose matrices.>> tra a
                             \t(here a is the matrix ID)
                             7. Inverse matrices.>>inv a
@@ -223,7 +220,6 @@ public class PlatformActions {
                     break;
                 default:
                     System.out.println("Enter a valid command.");
-                    break;
             }
         }
 

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class IdentityMatrix extends ScalarMatrix{
     int row, column;
     double[][] m;
@@ -26,7 +28,6 @@ public class IdentityMatrix extends ScalarMatrix{
 
     @Override
     public double determinant(double[][] matrix) {
-        //TODO: reduce to rref and calculate determinant
         return 1;
     }
 
@@ -58,6 +59,10 @@ public class IdentityMatrix extends ScalarMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

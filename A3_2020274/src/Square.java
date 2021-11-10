@@ -31,8 +31,6 @@ interface Square extends Matrix {
 
         TriangularMatrix = UpperTriangularMatrix || LowerTriangularMatrix;
         DiagonalMatrix = UpperTriangularMatrix && LowerTriangularMatrix;
-
-        //TODO: assign for singular matrix (complete the rref shit)
         if ( DiagonalMatrix){
             System.out.println("This is a diagonal Matrix");
             double temp = m[0][0];

@@ -1,10 +1,11 @@
+import java.util.Arrays;
+
 public class NullMatrix extends RectangularMatrix{
     int column;
     int row;
     String type;
     char ID;
     double[][] m;
-    //TODO: set a proper type
 
     NullMatrix(){
         this.type = "Null Matrix";
@@ -35,6 +36,10 @@ public class NullMatrix extends RectangularMatrix{
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

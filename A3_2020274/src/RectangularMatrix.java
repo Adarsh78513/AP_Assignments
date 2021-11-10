@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RectangularMatrix implements Rectangular{
     char ID;
@@ -36,6 +37,10 @@ public class RectangularMatrix implements Rectangular{
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override
@@ -48,6 +53,11 @@ public class RectangularMatrix implements Rectangular{
     @Override
     public void matrixType() {
         System.out.println(this.type);
+    }
+
+    @Override
+    public void divide(Matrix x, Matrix y) {
+        System.out.println("Invalid request.");
     }
 
 //    @Override

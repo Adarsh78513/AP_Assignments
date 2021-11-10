@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DiagonalMatrix extends TriangularMatrix{
     char ID;
     int column, row;
@@ -49,6 +51,9 @@ public class DiagonalMatrix extends TriangularMatrix{
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

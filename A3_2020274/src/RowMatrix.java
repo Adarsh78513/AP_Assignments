@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RowMatrix extends RectangularMatrix{
     int column, row;
     double[][] m;
@@ -92,6 +94,10 @@ public class RowMatrix extends RectangularMatrix{
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     @Override

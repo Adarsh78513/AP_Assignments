@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SquareMatrix implements Square {
     char ID;
@@ -64,6 +65,19 @@ public class SquareMatrix implements Square {
     @Override
     public void matrixType() {
         System.out.println(this.type);
+    }
+
+    @Override
+    public void divide(Matrix x, Matrix y) {
+        //x / y
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        m2 = y.inverse(m2);
+        if ( m2 == null){
+            System.out.println("Can not perform this operation, the matrix in the denominator in singular");
+            return;
+        }
+        Matrix.multiply(m1, m2);
     }
 
 // Method to carry out the partial-pivoting Gaussian
@@ -210,6 +224,10 @@ public class SquareMatrix implements Square {
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
         System.out.println("The ID set for ths matrix is: " + this.ID);
+        //print matrix created
+        for (double[] ints : m) {
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
 

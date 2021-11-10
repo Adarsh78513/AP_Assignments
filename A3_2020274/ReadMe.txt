@@ -3,13 +3,18 @@ Commands to work with:
 2. Create matrices of requested matrix-types and label them with appropriate matrix-types. >> create
 3. Display all the matrix-type labels of a requested matrix. >> type a
 	(here a is the matrix ID)
-4. Perform addition, subtraction, multiplication & division. >> a + b or a - b or a * b....here a and b are the matrix ID
-5. 
+4. Perform addition, subtraction, multiplication & division. >> a + b or a - b or a * b
+	(here a and b are the matrix ID)
+5. Perform element-wise operations. >> a.*b and a./b
+	(here a and b are the matrix ID)	**The commands are similar to that in MATLAB				
 6. Transpose matrices.>> tra a
 	(here a is the matrix ID)
 7. Inverse matrices.>>inv a
 	(here a is the matrix ID)
 8. Compute means: row-wise mean, column-wise mean, mean of all the elements. >> mean
+										mean r (row wise mean)
+										mean c (Column wise mean)
+										mean a (mean of all the elements)
 9. Compute determinants. >> det a
 	(here a is the matrix ID)
 10. Compute (A + transpose of A) for a matrix A. >> st a
@@ -17,7 +22,7 @@ Commands to work with:
 11. Retrieve all the existing matrices (entered or created) having requested matrix-type labels.>> show
 
 
-//to view a particular martix>> show a
+//to view a particular matrix>> show a
 	(here a is the matrix ID)
 //to view all matrix>> show A
 	(here A is for all and is not a matrix ID.)
