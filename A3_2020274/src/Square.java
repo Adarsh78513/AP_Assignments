@@ -9,6 +9,7 @@ interface Square extends Matrix {
         boolean DiagonalMatrix = true;
         boolean IdentityMatrix = false;
         boolean ScalarMatrix = true;
+        boolean SingularMatrix = false;
 
         for(int i = 0; i < m.length; i++){
             for(int j = 0; j < m[i].length; j++){

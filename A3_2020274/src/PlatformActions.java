@@ -4,6 +4,33 @@ import java.util.Arrays;
 public class PlatformActions {
     public static boolean perform(String action){
         if(action.matches(".*[-+*/].*")){
+            if ( action.matches(".*[.].*") ){
+                String a = action.replaceAll(" ", "");
+                char[] actions = a.toCharArray();
+
+                Matrix x = AllMatrix.getMatrix(actions[0]);
+                Matrix y = AllMatrix.getMatrix(actions[3]);
+
+                assert x != null;
+                assert y != null;
+
+                if ( actions[2] == '*'){
+                    Matrix.elementWiseMultiplication(x, y);
+                }
+                else if ( actions[2] == '/'){
+                    Matrix.elementWiseDivision(x, y);
+                }
+                else if ( actions[2] == '+'){
+                    Matrix.add(x, y);
+                }
+                else if ( actions[2] == '-'){
+                    Matrix.subtract(x, y);
+                }
+                else {
+                    System.out.println("Error: Invalid action");
+                }
+                return true;
+            }
             String a = action.replaceAll(" ", "");
             char[] actions = a.toCharArray();
 
@@ -13,7 +40,6 @@ public class PlatformActions {
                 return true;
             }
             else if ( actions[1] == '+' ){
-                //TODO: get matrix from the ID in the add sub functions itself
                 Matrix x = AllMatrix.getMatrix(actions[0]);
                 Matrix y = AllMatrix.getMatrix(actions[2]);
 

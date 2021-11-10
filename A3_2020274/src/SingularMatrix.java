@@ -11,7 +11,7 @@ public class SingularMatrix extends SquareMatrix{
         this.type = "Singular Matrix";
         this.row = this.column = 3;
         //TODO: Set a proper matrix as default
-        this.m = new double[column][row];
+        this.m = new double[][]{{3, 3, 3}, {3, 3, 3}, {3, 3, 3}};
     }
 
     public String getMatrixType() {

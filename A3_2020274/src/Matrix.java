@@ -27,6 +27,38 @@ interface Matrix {
         }
     }
 
+    static void elementWiseMultiplication(Matrix x, Matrix y) {
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        double[][] m = new double[x.getRow()][y.getColumn()];
+        for (int i = 0; i < x.getRow(); i++) {
+            for (int j = 0; j < x.getColumn(); j++) {
+                m[i][j] = m1[i][j] * m2[i][j];
+            }
+        }
+
+        System.out.println("The element wise multiplication of the two matrices is: ");
+        for (int i = 0; i < x.getRow(); i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+    }
+
+    static void elementWiseDivision(Matrix x, Matrix y) {
+        double[][] m1 = x.getMatrix();
+        double[][] m2 = y.getMatrix();
+        double[][] m = new double[x.getRow()][x.getColumn()];
+        for (int i = 0; i < x.getRow(); i++) {
+            for (int j = 0; j < x.getColumn(); j++) {
+                m[i][j] = m1[i][j] / m2[i][j];
+            }
+        }
+
+        System.out.println("The element wise division of the two matrices is: ");
+        for (int i = 0; i < x.getRow(); i++) {
+            System.out.println(Arrays.toString(m[i]));
+        }
+    }
+
     double determinant(double[][] matrix);
 
     static double[][] matrixTranspose(Matrix m){
