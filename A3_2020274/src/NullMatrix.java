@@ -1,10 +1,14 @@
 public class NullMatrix extends RectangularMatrix{
+    int column;
+    int row;
     String type;
     char ID;
+    double[][] m;
     //TODO: set a proper type
 
     NullMatrix(){
         this.type = "Null Matrix";
+        m = new double[][]{{0, 0}, {0, 0}};
     }
 
     @Override
@@ -15,7 +19,8 @@ public class NullMatrix extends RectangularMatrix{
     @Override
     public void setMatrix(double[][] matrix) {
         this.m = matrix;
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
@@ -24,7 +29,8 @@ public class NullMatrix extends RectangularMatrix{
 
     @Override
     public void setMatrix(){
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);

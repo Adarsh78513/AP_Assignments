@@ -1,24 +1,19 @@
 public class SingletonMatrix extends SquareMatrix{
+    int column, row;
     String type;
     char ID;
+    double[][] m;
+
 
     SingletonMatrix(){
         this.type = "Singleton Matrix";
+        m = new double[][]{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}};
     }
+
     @Override
     public String getMatrixType() {
         return this.type;
     }
-
-//    @Override
-//    public void setMatrix(double[][] matrix) {
-//        this.m = matrix;
-//        this.column = this.row = m.length;
-//        this.ID = AllMatrix.validID();
-//        allRectangularMatrix.add(this);
-//        AllMatrix.addMatrix(this);
-//        System.out.println("The ID set for ths matrix is: " + this.ID);
-//    }
 
     @Override
     public char getID() {
@@ -29,7 +24,8 @@ public class SingletonMatrix extends SquareMatrix{
     @Override
     public void setMatrix(double[][] matrix) {
         this.m = matrix;
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);
@@ -38,7 +34,8 @@ public class SingletonMatrix extends SquareMatrix{
 
     @Override
     public void setMatrix(){
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allSquareMatrix.add(this);
         AllMatrix.addMatrix(this);

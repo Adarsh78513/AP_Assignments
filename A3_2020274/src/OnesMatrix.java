@@ -1,10 +1,13 @@
 public class OnesMatrix extends RectangularMatrix{
+    int column, row;
     char ID;
     String type;
+    double[][] m;
     //TODO: set a proper type
 
     OnesMatrix(){
         this.type = "Ones Matrix";
+        m = new double[][]{{1,1,1},{1,1,1},{1,1,1}};
     }
     @Override
     public String getMatrixType() {
@@ -14,7 +17,8 @@ public class OnesMatrix extends RectangularMatrix{
     @Override
     public void setMatrix(double[][] matrix) {
         this.m = matrix;
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);
@@ -23,7 +27,8 @@ public class OnesMatrix extends RectangularMatrix{
 
     @Override
     public void setMatrix(){
-        this.column = this.row = m.length;
+        this.row = m.length;
+        this.column = m[0].length;
         this.ID = AllMatrix.validID();
         allRectangularMatrix.add(this);
         AllMatrix.addMatrix(this);

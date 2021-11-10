@@ -2,7 +2,22 @@ import java.util.Arrays;
 
 interface Matrix {
     static void assignMatrixType(double[][] matrix) {
-        if ( matrix.length == matrix[0].length ){
+        //identify a Singular matrix
+        boolean SingularMatrix = true;
+        double temp = matrix[0][0];
+        for (double[] doubles : matrix) {
+            for (double aDouble : doubles) {
+                if (aDouble != temp) {
+                    SingularMatrix = false;
+                    break;
+                }
+            }
+        }
+        if (SingularMatrix) {
+            System.out.println("The matrix is a singular matrix.");
+            Singular.assignMatrixType(matrix);
+        }
+        else if ( matrix.length == matrix[0].length ){
             System.out.println("This is a square matrix...");
             Square.assignMatrixType(matrix);
         }

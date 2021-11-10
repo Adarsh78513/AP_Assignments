@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         //Taking input for the type of function to perform in the platform
+        System.out.println("To see all valid commands while the program is running enter \"help\".");
         boolean usingPlatform = true;
         while (usingPlatform){
             System.out.print("Please enter command>>");
