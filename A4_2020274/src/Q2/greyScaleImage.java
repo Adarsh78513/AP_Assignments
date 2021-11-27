@@ -1,6 +1,7 @@
 package Q2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class greyScaleImage implements Image{
 
@@ -48,8 +49,12 @@ public class greyScaleImage implements Image{
 
 
     public void inputPixels() {
-        System.out.println("It has a height of " + height + " and a width of " + width);
-        System.out.print("Enter the pixels of the image: ");
+        System.out.print("Enter the width of the image: ");
+        width = Integer.parseInt(Main.scanner.next());
+        System.out.print("Enter the height of the image: ");
+        height = Integer.parseInt(Main.scanner.next());
+        pixels = new int[height][width];
+        System.out.println("Enter the pixels of the image: ");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 pixels[i][j] = Integer.parseInt(Main.scanner.next());

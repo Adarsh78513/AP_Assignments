@@ -15,7 +15,8 @@ public class Main {
                     1. Input image
                     2. Create image
                     3. Show image
-                    4. Exit""");
+                    4. Find negative image
+                    5. Exit""");
             System.out.println("Enter a number form the menu: ");
             int choice = scanner.nextInt();
             if (choice == 1) {
@@ -83,6 +84,40 @@ public class Main {
                 }
             }
             else if (choice == 4) {
+                System.out.println("Choose from the following: ");
+                System.out.println("""
+                        1. Colour Image
+                        2. Grey Scale Image""");
+                int choice2 = scanner.nextInt();
+                if (choice2 == 1) {
+                    System.out.println("Choose the image you want to see the negative of from the following: ");
+                    for ( Image image : colorImage.allColorImages){
+                        System.out.println(image.getImageNumber());
+                    }
+                    int choice3 = scanner.nextInt();
+                    for ( Image image : colorImage.allColorImages){
+                        if ( image.getImageNumber() == choice3){
+                            System.out.println(image.negative());
+                        }
+                    }
+                }
+                else if ( choice2 == 2) {
+                    System.out.println("Choose the image you want to see the negative of from the following: ");
+                    for ( Image image : greyScaleImage.allGreyScaleImages){
+                        System.out.println(image.getImageNumber());
+                    }
+                    int choice3 = scanner.nextInt();
+                    for ( Image image : greyScaleImage.allGreyScaleImages){
+                        if ( image.getImageNumber() == choice3){
+                            System.out.println(image.negative());
+                        }
+                    }
+                }
+                else {
+                    System.out.println("Invalid choice");
+                }
+            }
+            else if (choice == 5) {
                 isRunning = false;
             }
             else{

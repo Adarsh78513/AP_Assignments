@@ -1,6 +1,7 @@
 package Q2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class colorImage implements Image {
     int imageNumber;
@@ -16,9 +17,9 @@ public class colorImage implements Image {
         this.imageNumber = allColorImages.size() + greyScaleImage.allGreyScaleImages.size() + 1;
         this.width = width;
         this.height = height;
-        redPixels = new int[width][height];
-        greenPixels = new int[width][height];
-        bluePixels = new int[width][height];
+        redPixels = new int[height][width];
+        greenPixels = new int[height][width];
+        bluePixels = new int[height][width];
     }
 
     colorImage(){
@@ -52,22 +53,19 @@ public class colorImage implements Image {
 
     @Override
     public void inputPixels(){
-        System.out.println("""
-                What pixels do you want to enter?
-                1. Red
-                2. Green
-                3. Blue
-                4. Stop""");
-        int choice = Integer.parseInt(Main.scanner.next());
-        boolean stop = false;
-        while ( !stop ) {
-            switch (choice) {
-                case 1 -> inputRedPixels();
-                case 2 -> inputGreenPixels();
-                case 3 -> inputBluePixels();
-                case 4 -> stop = true;
-            }
-        }
+        System.out.print("Enter the width of the image: ");
+        width = Integer.parseInt(Main.scanner.next());
+        System.out.print("Enter the height of the image: ");
+        height = Integer.parseInt(Main.scanner.next());
+        redPixels = new int[height][width];
+        greenPixels = new int[height][width];
+        bluePixels = new int[height][width];
+
+        inputRedPixels();
+        inputGreenPixels();
+        inputBluePixels();
+        System.out.println("The image we received is: ");
+        System.out.println(this);
         allColorImages.add(this);
 
     }
@@ -75,13 +73,14 @@ public class colorImage implements Image {
 
     public void inputRedPixels(){
         System.out.println("It has a height of " + height + " and a width of " + width);
-        System.out.print("Enter the pixels of the image: ");
+        System.out.println("Enter the RED pixels of the image: ");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 redPixels[i][j] = Integer.parseInt(Main.scanner.next());
                 if ( redPixels[i][j] < 0 || redPixels[i][j] > 255 ) {
                     System.out.println("Invalid pixel value. " +
                             "Please enter a value between 0 and 255.");
+                    return;
                 }
             }
         }
@@ -89,13 +88,14 @@ public class colorImage implements Image {
 
     public void inputGreenPixels(){
         System.out.println("It has a height of " + height + " and a width of " + width);
-        System.out.print("Enter the pixels of the image: ");
+        System.out.println("Enter the GREEN pixels of the image: ");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 greenPixels[i][j] = Integer.parseInt(Main.scanner.next());
                 if ( greenPixels[i][j] < 0 || greenPixels[i][j] > 255 ) {
                     System.out.println("Invalid pixel value. " +
                             "Please enter a value between 0 and 255.");
+                    return;
                 }
             }
         }
@@ -103,13 +103,14 @@ public class colorImage implements Image {
 
     public void inputBluePixels(){
         System.out.println("It has a height of " + height + " and a width of " + width);
-        System.out.print("Enter the pixels of the image: ");
+        System.out.println("Enter the BLUE pixels of the image: ");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 bluePixels[i][j] = Integer.parseInt(Main.scanner.next());
                 if ( bluePixels[i][j] < 0 || bluePixels[i][j] > 255 ) {
                     System.out.println("Invalid pixel value. " +
                             "Please enter a value between 0 and 255.");
+                    return;
                 }
             }
         }
