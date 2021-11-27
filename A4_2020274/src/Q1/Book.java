@@ -1,6 +1,6 @@
 package Q1;
 
-public class Book{
+public class Book implements Comparable<Book> {
     final String bookTitle;
     final int ISBN;
     final int barcode;
@@ -23,7 +23,23 @@ public class Book{
 
     @Override
     public String toString() {
-        return "BookTitle=" + bookTitle + ", ISBN=" + ISBN + ", barcode=" + barcode;
+        return "BookTitle: " + bookTitle + ", ISBN: " + ISBN + ", barcode: " + barcode;
     }
+
+
+    @Override
+    public int compareTo(Book b) {
+        if (this.bookTitle.compareTo(b.bookTitle) != 0) {
+            return this.bookTitle.compareTo(b.bookTitle);
+        }else{
+            if ( this.ISBN != b.ISBN) {
+                return this.ISBN - b.ISBN;
+            }
+            else {
+                return this.barcode - b.barcode;
+            }
+        }
+    }
+
 
 }
