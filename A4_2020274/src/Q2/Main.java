@@ -25,21 +25,11 @@ public class Main {
                         2. Grey Scale Image""");
                 int choice2 = scanner.nextInt();
                 if (choice2 == 1) {
-                    System.out.print("Enter the width of the image");
-                    int width = scanner.nextInt();
-                    System.out.print("Enter the height of the image");
-                    int height = scanner.nextInt();
-
-                    Image image = new colorImage(width, height);
+                    Image image = new colorImage();
                     image.inputPixels();
                 }
                 else if (choice2 == 2) {
-                    System.out.print("Enter the width of the image");
-                    int width = scanner.nextInt();
-                    System.out.print("Enter the height of the image");
-                    int height = scanner.nextInt();
-
-                    Image image = new greyScaleImage(width, height);
+                    Image image = new greyScaleImage();
                     image.inputPixels();
                 }
             }
@@ -50,21 +40,11 @@ public class Main {
                         2. Grey Scale Image""");
                 int choice2 = scanner.nextInt();
                 if (choice2 == 1) {
-                    System.out.print("Enter the width of the image");
-                    int width = scanner.nextInt();
-                    System.out.print("Enter the height of the image");
-                    int height = scanner.nextInt();
-
-                    Image image = new colorImage(width, height);
+                    Image image = new colorImage();
                     image.createImage();
                 }
                 else if (choice2 == 2) {
-                    System.out.print("Enter the width of the image");
-                    int width = scanner.nextInt();
-                    System.out.print("Enter the height of the image");
-                    int height = scanner.nextInt();
-
-                    Image image = new greyScaleImage(width, height);
+                    Image image = new greyScaleImage();
                     image.createImage();
                 }
             }
@@ -76,14 +56,27 @@ public class Main {
                 int choice2 = scanner.nextInt();
                 if (choice2 == 1) {
                     System.out.println("Choose the image you want to see from the following: ");
-                    //TODO: display all the images
-//                    for ( Image image : greyScaleImage.allGreyScaleImages){
-//                        System.out.println(image.getName());
-//                    }
+                    for ( Image image : colorImage.allColorImages){
+                        System.out.println(image.getImageNumber());
+                    }
+                    int choice3 = scanner.nextInt();
+                    for ( Image image : colorImage.allColorImages){
+                        if ( image.getImageNumber() == choice3){
+                            System.out.println(image);
+                        }
+                    }
                 }
                 else if ( choice2 == 2) {
                     System.out.println("Choose the image you want to see from the following: ");
-
+                    for ( Image image : greyScaleImage.allGreyScaleImages){
+                        System.out.println(image.getImageNumber());
+                    }
+                    int choice3 = scanner.nextInt();
+                    for ( Image image : greyScaleImage.allGreyScaleImages){
+                        if ( image.getImageNumber() == choice3){
+                            System.out.println(image);
+                        }
+                    }
                 }
                 else {
                     System.out.println("Invalid choice");

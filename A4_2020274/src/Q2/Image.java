@@ -6,12 +6,11 @@ interface Image  {
     public void setHeight(int height);
     public int getWidth();
     public int getHeight();
-    public Image scale(int w, int h);
-    public Image rotate(int angle);
     public void inputPixels();
     public void showPixels();
     public Image negative();
     public void createImage();
+    public int getImageNumber();
 
 
 
